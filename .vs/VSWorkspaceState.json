@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Space_Defence"
+    "\\Space_Defence",
+    "\\Space_Defence\\Space_Defence"
   ],
+  "SelectedNode": "\\Space_Defence\\Space_Defence",
   "PreviewInSolutionExplorer": false
 }
