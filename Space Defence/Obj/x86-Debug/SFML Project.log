@@ -1,6 +1,2 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(387,5): warning MSB8028: The intermediate directory (C:\Users\emilh\Documents\GitHub\Space_Defence\Space Defence\Obj\x86-Debug\) contains files shared from another project (SFML Project.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Skipping... (no relevant changes detected)
-  main.cpp
-  Player.cpp
-  Game.cpp
+﻿  Main.cpp
   SFML Project.vcxproj -> C:\Users\emilh\Documents\GitHub\Space_Defence\Space Defence\Bin\x86-Debug\Space Defence.exe
