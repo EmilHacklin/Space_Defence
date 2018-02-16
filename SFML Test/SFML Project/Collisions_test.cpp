@@ -12,19 +12,20 @@ void eventTest(RenderWindow &window, Sprite &sprite, Sprite &obstacle)
 	window.pollEvent(event);
 	Vector2u windowSize = window.getSize();
 	Vector2f spritePos = sprite.getPosition();
-	FloatRect spriteBoundingBox = sprite.getGlobalBounds();
-	FloatRect obstacleBoundingBox = obstacle.getGlobalBounds();
+	FloatRect spriteBoundingBox, obstacleBoundingBox;
 	switch (event.type)
 	{
 	case Event::Closed:
 		window.close();
 		break;
 	case Event::KeyPressed:
+		spriteBoundingBox = sprite.getGlobalBounds();
 		if (event.key.code == Keyboard::Left)
 		{
 			if (spritePos.x > 0)
 			{
 				sprite.move(-5, 0);
+				spriteBoundingBox = sprite.getGlobalBounds();
 			}
 		}
 		else if (event.key.code == Keyboard::Right)
@@ -32,6 +33,7 @@ void eventTest(RenderWindow &window, Sprite &sprite, Sprite &obstacle)
 			if ((spritePos.x + spriteBoundingBox.width) < windowSize.x)
 			{
 				sprite.move(5, 0);
+				spriteBoundingBox = sprite.getGlobalBounds();
 			}
 		}
 		else if (event.key.code == Keyboard::Up)
@@ -39,6 +41,7 @@ void eventTest(RenderWindow &window, Sprite &sprite, Sprite &obstacle)
 			if (spritePos.y > 0)
 			{
 				sprite.move(0, -5);
+				spriteBoundingBox = sprite.getGlobalBounds();
 			}
 		}
 		else if (event.key.code == Keyboard::Down)
@@ -46,16 +49,13 @@ void eventTest(RenderWindow &window, Sprite &sprite, Sprite &obstacle)
 			if ((spritePos.y + spriteBoundingBox.height) < windowSize.y)
 			{
 				sprite.move(0, 5);
+				spriteBoundingBox = sprite.getGlobalBounds();
 			}
 		}
+		obstacleBoundingBox = obstacle.getGlobalBounds();
 		if (spriteBoundingBox.intersects(obstacleBoundingBox))
 		{
 			cout << "Collision has occurred!" << endl;
-			
-			window.display();
-			window.clear(Color::Black);
-			window.draw(sprite);
-			window.draw(obstacle);
 
 			if (event.key.code == Keyboard::Left)
 			{
@@ -75,7 +75,7 @@ void eventTest(RenderWindow &window, Sprite &sprite, Sprite &obstacle)
 			}
 		}
 		break;
-	default:// we don't process other types of events
+	default:
 		break;
 	}
 }
