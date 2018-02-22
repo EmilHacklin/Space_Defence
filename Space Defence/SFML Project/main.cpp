@@ -10,15 +10,15 @@ int main()
 {
 	RenderWindow window(VideoMode(800, 600), "My window", Style::Close);
 	MovingObject redBox, greenBox;
-	Vector2f sizeOfRed, sizeOfGreen;
+	Vector2u sizeOfRed, sizeOfGreen;
 
-	if (!redBox.setTexture("../Resources/Red.png") || !greenBox.setTexture("../Resources/Green.png"))
+	if (!redBox.setTexture("../Resources/Red.png", sf::Vector2u(50,50)) || !greenBox.setTexture("../Resources/Player.png", sf::Vector2u(95,151)))
 	{
 		return -1;
 	}
 
-	sizeOfRed = redBox.getSize();
-	sizeOfGreen = greenBox.getSize();
+	sizeOfRed = redBox.getSizeOfKeyFrame();
+	sizeOfGreen = greenBox.getSizeOfKeyFrame();
 
 	redBox.setPosition((float)(400 - (sizeOfRed.x / 2)), (float)(300 - (sizeOfRed.y / 2)));
 	greenBox.setPosition((float)(400 - (sizeOfGreen.x / 2)), (float)(100 - (sizeOfGreen.y / 2)));
@@ -27,10 +27,10 @@ int main()
 	{
 		window.clear(Color::Black);
 
-		redBox.draw(window);
-		greenBox.draw(window);
+		greenBox.update();
 
-		greenBox.input(window);
+		window.draw(redBox);
+		window.draw(greenBox);
 
 		Event event;
 		window.pollEvent(event);
