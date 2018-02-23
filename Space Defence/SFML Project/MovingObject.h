@@ -1,31 +1,35 @@
 #pragma once
 #include<SFML\System.hpp>
 #include<SFML\Graphics.hpp>
-#include<vector>
 #include<iostream>
 
 using namespace std;
-using namespace sf;
 
-class MovingObject
+extern sf::Vector2u windowSize;
+
+class MovingObject : public sf::Drawable
 {
 private:
-	Sprite sprite;
-	Texture texture;
-	FloatRect boundingBox;
-	float speed;
+	sf::Sprite sprite;
+	sf::Texture texture;
+	sf::IntRect keyFrameRect;
+	static float speed;
+	static sf::Clock clock;
 public:
-	MovingObject(const Texture &texture = Texture(),const Vector2f position = Vector2f(0.0f, 0.0f));
-	float getPositionX() const;
-	float getPositionY() const;
-	Vector2f getPosition() const;
-	Vector2f getSize() const;
-	bool setTexture(const string filePath);
-	void setPosition(const Vector2f position);
+	MovingObject(const sf::Texture &texture = sf::Texture(), const sf::Vector2u sizeOfKeyFrame = sf::Vector2u(), const sf::Vector2f position = sf::Vector2f(0.0f, 0.0f));
+	sf::Vector2f getPosition() const;
+	sf::Vector2u getSizeOfTexture() const;
+	sf::Vector2u getSizeOfKeyFrame() const;
+	bool setTexture(const string filePath, const sf::Vector2u sizeOfKeyFrame);
+	void setKeyFrameRect(const sf::IntRect keyFrameRect);
+	void setPosition(const sf::Vector2f position);
 	void setPosition(const float positionX, const float positionY);
-	void move(const Vector2i direction);
-	void draw(RenderWindow &window) const;
-	void input(RenderWindow &window);
+	static void resetClock();
+	virtual void move(const sf::Vector2i direction);
+	virtual bool canMoveDirection(const sf::Vector2i direction);
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void update();
+	void input();
 	~MovingObject();
 };
 
