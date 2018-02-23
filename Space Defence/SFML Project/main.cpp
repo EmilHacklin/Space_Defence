@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	sf::Vector2u windowSize = sf::Vector2u(800, 600);
+	windowSize = sf::Vector2u(800, 600);
 	sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Space Defence", sf::Style::Close);
 	MovingObject redBox, greenBox;
 	sf::Vector2u sizeOfRed, sizeOfGreen;
@@ -28,7 +28,7 @@ int main()
 		window.clear(sf::Color::Black);
 
 		greenBox.update();
-		MovingObject::resetClock();
+		MovingObject::resetGlobalClock();
 
 		window.draw(redBox);
 		window.draw(greenBox);

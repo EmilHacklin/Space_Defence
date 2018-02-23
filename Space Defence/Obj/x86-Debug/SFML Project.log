@@ -1,3 +1,2 @@
-﻿  Main.cpp
-MovingObject.obj : error LNK2001: unresolved external symbol "class sf::Vector2<unsigned int> windowSize" (?windowSize@@3V?$Vector2@I@sf@@A)
-C:\Users\emilh\Documents\GitHub\Space_Defence\Space Defence\Bin\x86-Debug\Space Defence.exe : fatal error LNK1120: 1 unresolved externals
+﻿  MovingObject.cpp
+  SFML Project.vcxproj -> C:\Users\emilh\Documents\GitHub\Space_Defence\Space Defence\Bin\x86-Debug\Space Defence.exe

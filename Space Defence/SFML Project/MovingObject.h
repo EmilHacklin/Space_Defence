@@ -13,8 +13,10 @@ private:
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::IntRect keyFrameRect;
+	int angle;
+	sf::Clock localClock;
+	static sf::Clock globalClock;
 	static float speed;
-	static sf::Clock clock;
 public:
 	MovingObject(const sf::Texture &texture = sf::Texture(), const sf::Vector2u sizeOfKeyFrame = sf::Vector2u(), const sf::Vector2f position = sf::Vector2f(0.0f, 0.0f));
 	sf::Vector2f getPosition() const;
@@ -24,9 +26,10 @@ public:
 	void setKeyFrameRect(const sf::IntRect keyFrameRect);
 	void setPosition(const sf::Vector2f position);
 	void setPosition(const float positionX, const float positionY);
-	static void resetClock();
+	static void resetGlobalClock();
 	virtual void move(const sf::Vector2i direction);
-	virtual bool canMoveDirection(const sf::Vector2i direction);
+	bool canMoveLeft() const;
+	bool canMoveRight() const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
 	void input();

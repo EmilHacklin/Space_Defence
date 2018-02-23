@@ -1,7 +1,8 @@
 #include "MovingObject.h"
 
+sf::Vector2u  windowSize;
 float MovingObject::speed = 200;
-sf::Clock MovingObject::clock;
+sf::Clock MovingObject::globalClock;
 
 MovingObject::MovingObject(const sf::Texture &texture, const sf::Vector2u sizeOfKeyFrame,const sf::Vector2f position)
 {
@@ -9,7 +10,9 @@ MovingObject::MovingObject(const sf::Texture &texture, const sf::Vector2u sizeOf
 	this->sprite = sf::Sprite(this->texture);
 	this->keyFrameRect = sf::IntRect(0, 0, sizeOfKeyFrame.x, sizeOfKeyFrame.y);
 	this->sprite.setTextureRect(this->keyFrameRect);
+	this->angle = 0;
 	this->sprite.setPosition(position);
+	this->globalClock;
 }
 
 sf::Vector2f MovingObject::getPosition() const
@@ -57,30 +60,36 @@ void MovingObject::setPosition(const float positionX, const float positionY)
 	this->sprite.setPosition(positionX, positionY);
 }
 
-void MovingObject::resetClock()
+void MovingObject::resetGlobalClock()
 {
-	clock.restart();
+	globalClock.restart();
 }
 
 void MovingObject::move(const sf::Vector2i direction)
 {
-	if (direction.x == -1 && this->canMoveDirection(direction))
+	
+	if (direction.x == -1 && this->canMoveLeft())
 	{
-		this->sprite.move(-this->speed*this->clock.getElapsedTime().asSeconds(), 0);
+		this->sprite.move(-this->speed*this->globalClock.getElapsedTime().asSeconds(), 0);
 	}
-	else if (direction.x == 1 && this->canMoveDirection(direction))
+	else if (direction.x == 1 && this->canMoveRight())
 	{
-		this->sprite.move(this->speed*this->clock.getElapsedTime().asSeconds(), 0);
+		this->sprite.move(this->speed*this->globalClock.getElapsedTime().asSeconds(), 0);
 	}
 }
 
-bool MovingObject::canMoveDirection(const sf::Vector2i direction)
+bool MovingObject::canMoveLeft() const
 {
-	if (direction.x == -1 && this->sprite.getPosition().x > 0)
+	if (this->sprite.getPosition().x > 0)
 	{
 		return true;
 	}
-	else if (direction.x == 1 && (this->sprite.getPosition().x + this->keyFrameRect.width) < windowSize.x)
+	return false;
+}
+
+bool MovingObject::canMoveRight() const
+{
+	if (this->sprite.getPosition().x + this->keyFrameRect.width < windowSize.x)
 	{
 		return true;
 	}
@@ -99,13 +108,66 @@ void MovingObject::update()
 
 void MovingObject::input()
 {
+	sf::Time localTime = this->localClock.getElapsedTime();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
 		this->move(sf::Vector2i(-1, 0));
+		if (localTime.asSeconds() > 0.075 && this->angle > -5)
+		{
+			if (this->angle >= 0)
+			{
+				this->keyFrameRect.top = this->keyFrameRect.height;
+				this->angle = -1;
+			}
+			else
+			{
+				this->keyFrameRect.top += this->keyFrameRect.height;
+				this->angle--;
+			}
+			this->sprite.setTextureRect(this->keyFrameRect);
+			this->localClock.restart();
+		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
 		this->move(sf::Vector2i(1, 0));
+		if (localTime.asSeconds() > 0.075 && this->angle < 5)
+		{
+			if (this->angle <= 0)
+			{
+				this->keyFrameRect.top = this->keyFrameRect.height * 6;
+				this->angle = 1;
+			}
+			else
+			{
+				this->keyFrameRect.top += this->keyFrameRect.height;
+				this->angle++;
+			}
+			this->sprite.setTextureRect(this->keyFrameRect);
+			this->localClock.restart();
+		}
+	}
+	else if (this->angle != 0 && localTime.asSeconds() > 0.05)
+	{
+		if (this->angle == 1)
+		{
+			this->keyFrameRect.top = 0;
+			this->angle--;
+		}
+		else
+		{
+			if (this->angle < 0)
+			{
+				this->angle++;
+			}
+			else if (this->angle > 0)
+			{
+				this->angle--;
+			}
+			this->keyFrameRect.top -= this->keyFrameRect.height;
+		}
+		this->sprite.setTextureRect(this->keyFrameRect);
+		this->localClock.restart();
 	}
 }
 
