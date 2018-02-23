@@ -109,51 +109,6 @@ void MovingObject::input()
 	}
 }
 
-//void MovingObject::input(sf::RenderWindow & window)
-//{
-//	sf::Event event;
-//	window.pollEvent(event);
-//	sf::Vector2u windowSize;
-//	sf::Vector2f pos;
-//	switch (event.type)
-//	{
-//	case sf::Event::KeyPressed:
-//		windowSize = window.getSize();
-//		pos = this->sprite.getPosition();
-//		if (event.key.code == sf::Keyboard::Left)
-//		{
-//			if (pos.x > 0)
-//			{
-//				this->move(sf::Vector2i(-1, 0));
-//			}
-//		}
-//		else if (event.key.code == sf::Keyboard::Right)
-//		{
-//			if ((pos.x + this->keyFrameRect.width) < windowSize.x)
-//			{
-//				this->move(sf::Vector2i(1, 0));
-//			}
-//		}
-//		else if (event.key.code == sf::Keyboard::Up)
-//		{
-//			if (pos.y > 0)
-//			{
-//				this->move(sf::Vector2i(0, -1));
-//			}
-//		}
-//		else if (event.key.code == sf::Keyboard::Down)
-//		{
-//			if ((pos.y + this->keyFrameRect.height) < windowSize.y)
-//			{
-//				this->move(sf::Vector2i(0, 1));
-//			}
-//		}
-//	default:
-//		break;
-//	}
-//}
-
-
 MovingObject::~MovingObject()
 {
 	cout << "Deleting object" << endl;
