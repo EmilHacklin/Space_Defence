@@ -21,6 +21,10 @@
   <ItemGroup>
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MovingObject.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MovingObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Health.h" />

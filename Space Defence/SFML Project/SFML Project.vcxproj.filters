@@ -18,12 +18,20 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Health.cpp">
+=======
+    <ClCompile Include="MovingObject.cpp">
+>>>>>>> MovingObject_Implementation
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Health.h">
+=======
+    <ClInclude Include="MovingObject.h">
+>>>>>>> MovingObject_Implementation
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
