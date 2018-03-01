@@ -2,7 +2,7 @@
 
 sf::Vector2u  windowSize;
 float MovingObject::speed = 200;
-sf::Clock MovingObject::globalClock;
+sf::Clock MovingObject::globalClock = sf::Clock();
 
 MovingObject::MovingObject(const sf::Texture &texture, const sf::Vector2u sizeOfKeyFrame,const sf::Vector2f position)
 {
@@ -60,7 +60,7 @@ void MovingObject::setPosition(const float positionX, const float positionY)
 
 void MovingObject::resetGlobalClock()
 {
-	globalClock.restart();
+	MovingObject::globalClock.restart();
 }
 
 void MovingObject::moveSprite(const sf::Vector2f offset)
