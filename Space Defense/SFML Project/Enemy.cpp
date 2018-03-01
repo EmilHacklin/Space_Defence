@@ -4,112 +4,112 @@ Enemy::Enemy(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, con
 	MovingObject(texture, sizeOfKeyFrame, position, scale)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Enemy::Enemy(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale) :
 	MovingObject(filePath, sizeOfKeyFrame, position, scale)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Enemy::Enemy(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale) :
-	MovingObject(texture, KeyFrameWidth, KeyFrameHeight, position, scale)
+Enemy::Enemy(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale) :
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scale)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Enemy::Enemy(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale) :
-	MovingObject(filePath, KeyFrameWidth, KeyFrameHeight, position, scale)
+Enemy::Enemy(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale) :
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scale)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Enemy::Enemy(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale) :
 	MovingObject(texture, sizeOfKeyFrame, positionX, positionY, scale)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Enemy::Enemy(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale) :
 	MovingObject(filePath, sizeOfKeyFrame, positionX, positionY, scale)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Enemy::Enemy(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY) :
 	MovingObject(texture, sizeOfKeyFrame, position, scaleX, scaleY)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Enemy::Enemy(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY) :
 	MovingObject(filePath, sizeOfKeyFrame, position, scaleX, scaleY)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Enemy::Enemy(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale) :
-	MovingObject(texture, KeyFrameWidth, KeyFrameHeight, positionX, positionY, scale)
+Enemy::Enemy(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale) :
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Enemy::Enemy(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale) :
-	MovingObject(filePath, KeyFrameWidth, KeyFrameHeight, positionX, positionY, scale)
+Enemy::Enemy(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale) :
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Enemy::Enemy(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY) :
 	MovingObject(texture, sizeOfKeyFrame, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Enemy::Enemy(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY) :
 	MovingObject(filePath, sizeOfKeyFrame, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Enemy::Enemy(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY) :
-	MovingObject(texture, KeyFrameWidth, KeyFrameHeight, position, scaleX, scaleY)
+Enemy::Enemy(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY) :
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Enemy::Enemy(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY) :
-	MovingObject(filePath, KeyFrameWidth, KeyFrameHeight, position, scaleX, scaleY)
+Enemy::Enemy(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY) :
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Enemy::Enemy(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY) :
-	MovingObject(texture, KeyFrameWidth, KeyFrameHeight, positionX, positionY, scaleX, scaleY)
+Enemy::Enemy(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY) :
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Enemy::Enemy(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY):
-	MovingObject(filePath, KeyFrameWidth, KeyFrameHeight, positionX, positionY, scaleX, scaleY)
+Enemy::Enemy(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY):
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Enemy::Enemy(const Enemy &originalEnemy):

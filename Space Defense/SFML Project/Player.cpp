@@ -5,7 +5,7 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale):
@@ -13,23 +13,23 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const s
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale):
-	MovingObject(texture, KeyFrameWidth, KeyFrameHeight, position, scale)
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale):
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scale)
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Player::Player(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale):
-	MovingObject(filePath, KeyFrameWidth, KeyFrameHeight, position, scale)
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale):
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scale)
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale):
@@ -37,7 +37,7 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale):
@@ -45,7 +45,7 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const f
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY):
@@ -53,7 +53,7 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY):
@@ -61,23 +61,23 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const s
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale):
-	MovingObject(texture, KeyFrameWidth, KeyFrameHeight, positionX, positionY, scale)
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale):
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Player::Player(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale):
-	MovingObject(filePath, KeyFrameWidth, KeyFrameHeight, positionX, positionY, scale)
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale):
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY):
@@ -85,7 +85,7 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY):
@@ -93,39 +93,39 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const f
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY):
-	MovingObject(texture, KeyFrameWidth, KeyFrameHeight, position, scaleX, scaleY)
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY):
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Player::Player(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY):
-	MovingObject(filePath, KeyFrameWidth, KeyFrameHeight, position, scaleX, scaleY)
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY):
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY):
-	MovingObject(texture, KeyFrameWidth, KeyFrameHeight, positionX, positionY, scaleX, scaleY)
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY):
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
-Player::Player(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY):
-	MovingObject(filePath, KeyFrameWidth, KeyFrameHeight, positionX, positionY, scaleX, scaleY)
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY):
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
 	this->angle = 0;
-	this->localClock = sf::Clock();
+	this->localClock;
 }
 
 Player::Player(const Player &originalPlayer):

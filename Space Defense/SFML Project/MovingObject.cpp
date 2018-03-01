@@ -1,8 +1,8 @@
 #include "MovingObject.h"
 
-sf::Vector2u  windowSize;
+sf::Vector2u windowSize;
 float MovingObject::speed = 300;
-sf::Clock MovingObject::globalClock = sf::Clock();
+sf::Clock MovingObject::globalClock;
 
 MovingObject::MovingObject(const sf::Texture &texture, const sf::Vector2f sizeOfKeyFrame,const sf::Vector2f position , const sf::Vector2f scale) throw(...)
 {
@@ -38,7 +38,7 @@ MovingObject::MovingObject(const string filePath, const sf::Vector2f sizeOfKeyFr
 	}
 }
 
-MovingObject::MovingObject(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale) throw(...)
+MovingObject::MovingObject(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale) throw(...)
 {
 	if (position.x < 0 || position.y < 0 || position.x > windowSize.x || position.y > windowSize.y)
 	{
@@ -46,13 +46,13 @@ MovingObject::MovingObject(const sf::Texture & texture, const float KeyFrameWidt
 	}
 	this->texture = texture;
 	this->sprite = sf::Sprite(this->texture);
-	this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(KeyFrameWidth), static_cast<int>(KeyFrameHeight));
+	this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(keyFrameWidth), static_cast<int>(keyFrameHeight));
 	this->sprite.setTextureRect(this->keyFrameRect);
 	this->sprite.setPosition(position);
 	this->sprite.setScale(scale);
 }
 
-MovingObject::MovingObject(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale) throw(...)
+MovingObject::MovingObject(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale) throw(...)
 {
 	if (position.x < 0 || position.y < 0 || position.x > windowSize.x || position.y > windowSize.y)
 	{
@@ -61,7 +61,7 @@ MovingObject::MovingObject(const string filePath, const float KeyFrameWidth, con
 	if (this->texture.loadFromFile(filePath))
 	{
 		this->sprite = sf::Sprite(this->texture);
-		this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(KeyFrameWidth), static_cast<int>(KeyFrameHeight));
+		this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(keyFrameWidth), static_cast<int>(keyFrameHeight));
 		this->sprite.setTextureRect(this->keyFrameRect);
 		this->sprite.setPosition(position);
 		this->sprite.setScale(scale);
@@ -140,7 +140,7 @@ MovingObject::MovingObject(const string filePath, const sf::Vector2f sizeOfKeyFr
 	}
 }
 
-MovingObject::MovingObject(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale) throw(...)
+MovingObject::MovingObject(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale) throw(...)
 {
 	if (positionX < 0 || positionY < 0 || positionX > windowSize.x || positionY > windowSize.y)
 	{
@@ -148,13 +148,13 @@ MovingObject::MovingObject(const sf::Texture & texture, const float KeyFrameWidt
 	}
 	this->texture = texture;
 	this->sprite = sf::Sprite(this->texture);
-	this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(KeyFrameWidth), static_cast<int>(KeyFrameHeight));
+	this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(keyFrameWidth), static_cast<int>(keyFrameHeight));
 	this->sprite.setTextureRect(this->keyFrameRect);
 	this->sprite.setPosition(positionX, positionY);
 	this->sprite.setScale(scale);
 }
 
-MovingObject::MovingObject(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale) throw(...)
+MovingObject::MovingObject(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale) throw(...)
 {
 	if (positionX < 0 || positionY < 0 || positionX > windowSize.x || positionY > windowSize.y)
 	{
@@ -163,7 +163,7 @@ MovingObject::MovingObject(const string filePath, const float KeyFrameWidth, con
 	if (this->texture.loadFromFile(filePath))
 	{
 		this->sprite = sf::Sprite(this->texture);
-		this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(KeyFrameWidth), static_cast<int>(KeyFrameHeight));
+		this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(keyFrameWidth), static_cast<int>(keyFrameHeight));
 		this->sprite.setTextureRect(this->keyFrameRect);
 		this->sprite.setPosition(positionX, positionY);
 		this->sprite.setScale(scale);
@@ -208,7 +208,7 @@ MovingObject::MovingObject(const string filePath, const sf::Vector2f sizeOfKeyFr
 	}
 }
 
-MovingObject::MovingObject(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY) throw(...)
+MovingObject::MovingObject(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY) throw(...)
 {
 	if (position.x < 0 || position.y < 0 || position.x > windowSize.x || position.y > windowSize.y)
 	{
@@ -216,13 +216,13 @@ MovingObject::MovingObject(const sf::Texture & texture, const float KeyFrameWidt
 	}
 	this->texture = texture;
 	this->sprite = sf::Sprite(this->texture);
-	this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(KeyFrameWidth), static_cast<int>(KeyFrameHeight));
+	this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(keyFrameWidth), static_cast<int>(keyFrameHeight));
 	this->sprite.setTextureRect(this->keyFrameRect);
 	this->sprite.setPosition(position);
 	this->sprite.setScale(scaleX, scaleY);
 }
 
-MovingObject::MovingObject(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY) throw(...)
+MovingObject::MovingObject(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY) throw(...)
 {
 	if (position.x < 0 || position.y < 0 || position.x > windowSize.x || position.y > windowSize.y)
 	{
@@ -231,7 +231,7 @@ MovingObject::MovingObject(const string filePath, const float KeyFrameWidth, con
 	if (this->texture.loadFromFile(filePath))
 	{
 		this->sprite = sf::Sprite(this->texture);
-		this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(KeyFrameWidth), static_cast<int>(KeyFrameHeight));
+		this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(keyFrameWidth), static_cast<int>(keyFrameHeight));
 		this->sprite.setTextureRect(this->keyFrameRect);
 		this->sprite.setPosition(position);
 		this->sprite.setScale(scaleX, scaleY);
@@ -242,7 +242,7 @@ MovingObject::MovingObject(const string filePath, const float KeyFrameWidth, con
 	}
 }
 
-MovingObject::MovingObject(const sf::Texture & texture, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY) throw(...)
+MovingObject::MovingObject(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY) throw(...)
 {
 	if (positionX < 0 || positionY < 0 || positionX > windowSize.x || positionY > windowSize.y)
 	{
@@ -250,13 +250,13 @@ MovingObject::MovingObject(const sf::Texture & texture, const float KeyFrameWidt
 	}
 	this->texture = texture;
 	this->sprite = sf::Sprite(this->texture);
-	this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(KeyFrameWidth), static_cast<int>(KeyFrameHeight));
+	this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(keyFrameWidth), static_cast<int>(keyFrameHeight));
 	this->sprite.setTextureRect(this->keyFrameRect);
 	this->sprite.setPosition(positionX, positionY);
 	this->sprite.setScale(scaleX, scaleY);
 }
 
-MovingObject::MovingObject(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY) throw(...)
+MovingObject::MovingObject(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY) throw(...)
 {
 	if (positionX < 0 || positionY < 0 || positionX > windowSize.x || positionY > windowSize.y)
 	{
@@ -265,7 +265,7 @@ MovingObject::MovingObject(const string filePath, const float KeyFrameWidth, con
 	if (this->texture.loadFromFile(filePath))
 	{
 		this->sprite = sf::Sprite(this->texture);
-		this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(KeyFrameWidth), static_cast<int>(KeyFrameHeight));
+		this->keyFrameRect = sf::IntRect(0, 0, static_cast<int>(keyFrameWidth), static_cast<int>(keyFrameHeight));
 		this->sprite.setTextureRect(this->keyFrameRect);
 		this->sprite.setPosition(positionX, positionY);
 		this->sprite.setScale(scaleX, scaleY);
