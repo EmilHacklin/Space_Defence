@@ -120,8 +120,7 @@ Player::Player(const sf::Texture & texture, const float KeyFrameWidth, const flo
 	this->localClock = sf::Clock();
 }
 
-Player::Player(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY)
-	:
+Player::Player(const string filePath, const float KeyFrameWidth, const float KeyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY):
 	MovingObject(filePath, KeyFrameWidth, KeyFrameHeight, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
@@ -129,18 +128,20 @@ Player::Player(const string filePath, const float KeyFrameWidth, const float Key
 	this->localClock = sf::Clock();
 }
 
-Player::Player(const Player & originalPlayer):
+Player::Player(const Player &originalPlayer):
 	MovingObject(originalPlayer)
 {
+	this->health = originalPlayer.health;
 	this->angle = originalPlayer.angle;
 	this->localClock = originalPlayer.localClock;
 }
 
-Player & Player::operator=(const Player & originalPlayer)
+Player & Player::operator=(const Player &originalPlayer)
 {
 	if (&originalPlayer != this)
 	{
 		MovingObject::operator=(originalPlayer);
+		this->health = originalPlayer.health;
 		this->angle = originalPlayer.angle;
 		this->localClock = originalPlayer.localClock;
 	}
