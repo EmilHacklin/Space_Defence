@@ -1,2 +1,6 @@
-﻿  MovingObject.cpp
-  SFML Project.vcxproj -> C:\Users\emilh\Documents\GitHub\Space_Defence\Space Defence\Bin\x86-Debug\Space Defence.exe
+﻿  Player.cpp
+d:\documents\github\space_defence\space defence\sfml project\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  Main.cpp
+d:\documents\github\space_defence\space defence\sfml project\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  Generating Code...
+  SFML Project.vcxproj -> D:\Documents\GitHub\Space_Defence\Space Defence\Bin\x86-Debug\Space Defence.exe
