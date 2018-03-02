@@ -4,8 +4,7 @@
 
 const sf::Vector2f PLAYERIMAGESIZE = sf::Vector2f(95, 151);
 
-class Player :
-	public MovingObject
+class Player : public MovingObject
 {
 private:
 	Health health;

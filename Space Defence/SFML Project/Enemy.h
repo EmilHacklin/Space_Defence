@@ -2,7 +2,7 @@
 #include "MovingObject.h"
 #include"Health.h"
 
-const sf::Vector2f PLAYERIMAGESIZE = sf::Vector2f(95, 151);
+const sf::Vector2f ENEMYIMAGESIZE = sf::Vector2f(64, 64);
 
 class Enemy : public MovingObject
 {
@@ -31,14 +31,8 @@ public:
 	Enemy(const Enemy &originalEnemy);
 	Enemy& operator=(const Enemy &originalEnemy);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void update();
 	virtual void update(sf::Vector2i direction);
 	void animation();
 	~Enemy();
 };
-
-class Player :
-	public MovingObject
-{
-
-};
-

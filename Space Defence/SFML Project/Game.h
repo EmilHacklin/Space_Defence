@@ -1,5 +1,6 @@
 #pragma once
 #include"Player.h"
+#include"Wave.h"
 
 const sf::Vector2f BACKGROUNDIMAGESIZE = sf::Vector2f(2560.0, 1440.0);
 
@@ -10,15 +11,16 @@ private:
 	sf::Sprite backgroundImage;
 	sf::Vector2f scale;
 	Player player;
-	//MovingObject *wave;
-	unsigned int nrOfRounds;
+	Wave *waves;
+	int nrOfWaves;
+	int nrOfRounds;
 	static void increseSpeed();
-	bool isWaveDestroyed() const;
-	void newWave();
+	bool isWavesDestroyed() const;
+	void newWaves();
 public:
 	Game() throw(...);
-	void update();
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	virtual void update();
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	unsigned int getNrOfRounds() const;
 	bool isGameOver() const;
 	~Game();

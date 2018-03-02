@@ -9,7 +9,7 @@ int main()
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	try
 	{
-		windowSize = sf::Vector2u(1980, 1024);
+		windowSize = sf::Vector2u(1200, 800);
 		sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Space Defense", sf::Style::Close);
 		Game game;
 
