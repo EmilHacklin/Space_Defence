@@ -7,15 +7,27 @@ void Game::increseSpeed()
 	MovingObject::increaseSpeed();
 }
 
-bool Game::isWaveDestroyed() const
+bool Game::isWavesDestroyed() const
 {
-	return false;
+	for (int i = 0; i < this->nrOfWaves; i++)
+	{
+		if (!this->waves[i].isWaveDestroyed())
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
-void Game::newWave()
+void Game::newWaves()
 {
-	//delete this->wave;
-	//this->wave = new MovingObject;
+	delete[] this->waves;
+	this->waves = new Wave[this->nrOfWaves];
+	for (int i = 0; i < this->nrOfWaves; i++)
+	{
+		this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale , 5 ,0.0);
+	}
+	
 }
 
 Game::Game()
@@ -28,7 +40,12 @@ Game::Game()
 		this->scale = sf::Vector2f(windowSize.x / BACKGROUNDIMAGESIZE.x, windowSize.y / BACKGROUNDIMAGESIZE.y);
 		this->backgroundImage.setScale(this->scale);
 		this->player = Player("../Resources/Player.png", PLAYERIMAGESIZE , static_cast<float>((windowSize.x - ((PLAYERIMAGESIZE.x * this->scale.x) / 2)) / 2.0), static_cast<float>(windowSize.y - (PLAYERIMAGESIZE.y * this->scale.y)), this->scale);
-		//this->wave = new MovingObject(enemyTexture, sf::Vector2u(64, 64));
+		this->nrOfWaves = 1;
+		this->waves = new Wave[this->nrOfWaves];
+		for (int i = 0; i < this->nrOfWaves; i++)
+		{
+			this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, 0.0);
+		}
 	}
 	else
 	{
@@ -39,7 +56,10 @@ Game::Game()
 void Game::update()
 {
 	this->player.update();
-	/*this->wave->update();*/
+	for (int i = 0; i < this->nrOfWaves; i++)
+	{
+		this->waves[i].update();
+	}
 	this->player.resetGlobalClock();
 }
 
@@ -47,7 +67,10 @@ void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(this->backgroundImage, states);
 	this->player.draw(target, states);
-	/*this->wave->draw(target, states);*/
+	for (int i = 0; i < this->nrOfWaves; i++)
+	{
+		this->waves[i].draw(target, states);
+	}
 }
 
 unsigned int Game::getNrOfRounds() const
@@ -63,5 +86,5 @@ bool Game::isGameOver() const
 
 Game::~Game()
 {
-	//delete this->wave;
+	delete[] this->waves;
 }
