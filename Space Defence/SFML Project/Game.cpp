@@ -30,7 +30,7 @@ void Game::newWaves()
 	
 }
 
-Game::Game()
+Game::Game(int nrOfWaves)
 {
 	if (this->backgroundTexture.loadFromFile("../Resources/Background.png"))
 	{
@@ -40,11 +40,16 @@ Game::Game()
 		this->scale = sf::Vector2f(windowSize.x / BACKGROUNDIMAGESIZE.x, windowSize.y / BACKGROUNDIMAGESIZE.y);
 		this->backgroundImage.setScale(this->scale);
 		this->player = Player("../Resources/Player.png", PLAYERIMAGESIZE , static_cast<float>((windowSize.x - ((PLAYERIMAGESIZE.x * this->scale.x) / 2)) / 2.0), static_cast<float>(windowSize.y - (PLAYERIMAGESIZE.y * this->scale.y)), this->scale);
-		this->nrOfWaves = 1;
+		this->projectiles = new Projectile[NROFPROJECTILES];
+		for (int i = 0; i < NROFPROJECTILES; i++)
+		{
+			this->projectiles[i] = Projectile("../Resources/Projectile.png", PROJECTILEIMAGESIZE, 0.0, 0.0, this->scale);
+		}
+		this->nrOfWaves = nrOfWaves;
 		this->waves = new Wave[this->nrOfWaves];
 		for (int i = 0; i < this->nrOfWaves; i++)
 		{
-			this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, 0.0);
+			this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, i * ENEMYIMAGESIZE.y);
 		}
 	}
 	else
