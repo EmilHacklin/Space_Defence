@@ -130,6 +130,18 @@ Enemy & Enemy::operator=(const Enemy &originalEnemy)
 	return *this;
 }
 
+bool Enemy::hasCollisionOccurred(sf::FloatRect boundingBox) const
+{
+	if (boundingBox.intersects(this->getGlobalBoundingBox()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void Enemy::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	MovingObject::draw(target, states);

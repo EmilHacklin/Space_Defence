@@ -38,6 +38,7 @@ public:
 	sf::Vector2f getPosition() const;
 	sf::Vector2u getSizeOfTexture() const;
 	sf::IntRect getKeyFrameRect() const;
+	sf::FloatRect getGlobalBoundingBox() const;
 	void setTexture(const string filePath, const sf::Vector2u sizeOfKeyFrame) throw(...);
 	void setTexture(const sf::Texture texture, const sf::Vector2u sizeOfKeyFrame);
 	void setKeyFrameRect(const sf::IntRect keyFrameRect) throw(...);

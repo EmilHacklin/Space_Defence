@@ -30,6 +30,7 @@ public:
 	Enemy(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY);
 	Enemy(const Enemy &originalEnemy);
 	Enemy& operator=(const Enemy &originalEnemy);
+	bool hasCollisionOccurred(sf::FloatRect boundingBox) const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
 	virtual void update(sf::Vector2i direction);

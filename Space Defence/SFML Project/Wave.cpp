@@ -168,6 +168,18 @@ Wave & Wave::operator=(const Wave &originalWave)
 	return *this;
 }
 
+bool Wave::hasCollisionOccurred(MovingObject &object) const
+{
+	for (int i = 0; i < this->nrOfEnemies; i++)
+	{
+		if (this->enemies[i]->hasCollisionOccurred(object.getGlobalBoundingBox()))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 bool Wave::isWaveDestroyed() const
 {
 	if (this->nrOfEnemies == 0)

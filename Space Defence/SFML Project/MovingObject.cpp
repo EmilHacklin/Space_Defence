@@ -315,6 +315,11 @@ sf::IntRect MovingObject::getKeyFrameRect() const
 	return this->keyFrameRect;
 }
 
+sf::FloatRect MovingObject::getGlobalBoundingBox() const
+{
+	return this->sprite.getGlobalBounds();
+}
+
 void MovingObject::setTexture(const string filePath, const sf::Vector2u sizeOfKeyFrame) throw(...)
 {
 	if (this->texture.loadFromFile(filePath))

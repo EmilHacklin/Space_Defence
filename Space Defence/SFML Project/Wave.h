@@ -17,6 +17,7 @@ public:
 	Wave(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float scaleX, const float scaleY, const int nrOfEnemies, const float yOffset) throw(...);
 	Wave(const Wave &originalWave);
 	Wave& operator=(const Wave &originalWave);
+	bool hasCollisionOccurred(MovingObject &object) const;
 	bool isWaveDestroyed() const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
