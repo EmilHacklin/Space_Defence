@@ -10,6 +10,9 @@ private:
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundImage;
 	sf::Vector2f scale;
+	sf::Clock lockalClock;
+	int randomNr;
+	const float TIMEDELAY = 0.5;
 	Player player;
 	Wave *waves;
 	int nrOfWaves;

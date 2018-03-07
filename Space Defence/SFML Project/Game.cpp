@@ -1,7 +1,5 @@
 #include "Game.h"
 
-
-
 void Game::increseSpeed()
 {
 	MovingObject::increaseSpeed();
@@ -34,17 +32,21 @@ Game::Game()
 {
 	if (this->backgroundTexture.loadFromFile("../Resources/Background.png"))
 	{
+		srand(static_cast<int>(time(0)));
 		this->backgroundImage = sf::Sprite(this->backgroundTexture);
 		this->backgroundImage.setTextureRect(sf::IntRect(0, 0, static_cast<int>(BACKGROUNDIMAGESIZE.x), static_cast<int>(BACKGROUNDIMAGESIZE.y)));
 		this->backgroundImage.setPosition(0, 0);
 		this->scale = sf::Vector2f(windowSize.x / BACKGROUNDIMAGESIZE.x, windowSize.y / BACKGROUNDIMAGESIZE.y);
 		this->backgroundImage.setScale(this->scale);
+		this->randomNr = 0;//rand() % 3;
+		this->lockalClock;
+		MovingObject::resetSpeed();
 		this->player = Player("../Resources/Player.png", PLAYERIMAGESIZE , static_cast<float>((windowSize.x - ((PLAYERIMAGESIZE.x * this->scale.x) / 2)) / 2.0), static_cast<float>(windowSize.y - (PLAYERIMAGESIZE.y * this->scale.y)), this->scale);
-		this->nrOfWaves = 1;
+		this->nrOfWaves = 2;
 		this->waves = new Wave[this->nrOfWaves];
 		for (int i = 0; i < this->nrOfWaves; i++)
 		{
-			this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, 0.0);
+			this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y));
 		}
 	}
 	else
@@ -56,11 +58,46 @@ Game::Game()
 void Game::update()
 {
 	this->player.update();
-	for (int i = 0; i < this->nrOfWaves; i++)
+	/*if (this->lockalClock.getElapsedTime().asSeconds() >= TIMEDELAY)
 	{
-		this->waves[i].update();
+		this->randomNr = rand() % 3;
+		this->lockalClock.restart();
+	}*/
+	
+	if (this->randomNr == 0)
+	{
+		this->waves[0].update(sf::Vector2i(-1, 0));
+		if (this->nrOfWaves > 1)
+		{
+			for (int i = 1; i < this->nrOfWaves; i++)
+			{
+				this->waves[i].update(sf::Vector2i(-1, 0), this->waves[i - 1]);
+			}
+		}
 	}
-	this->player.resetGlobalClock();
+	else if (this->randomNr == 1)
+	{
+		this->waves[0].update(sf::Vector2i(1, 0));
+		if (this->nrOfWaves > 1)
+		{
+			for (int i = 1; i < this->nrOfWaves; i++)
+			{
+				this->waves[i].update(sf::Vector2i(1, 0), this->waves[i - 1]);
+			}
+		}
+	}
+	else if (this->randomNr == 2)
+	{
+		this->waves[0].update(sf::Vector2i(0, 1));
+		if (this->nrOfWaves > 1)
+		{
+			for (int i = 1; i < this->nrOfWaves; i++)
+			{
+				this->waves[i].update(sf::Vector2i(0, 1), this->waves[i - 1]);
+			}
+		}
+	}
+	MovingObject::resetGlobalClock();
 }
 
 void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -82,7 +119,6 @@ bool Game::isGameOver() const
 {
 	return this->player.isAlive();
 }
-
 
 Game::~Game()
 {

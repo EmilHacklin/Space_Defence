@@ -142,6 +142,68 @@ bool Enemy::hasCollisionOccurred(sf::FloatRect boundingBox) const
 	}
 }
 
+bool Enemy::hasCollisionOccurred(const MovingObject & otherMovingObject) const
+{
+	if (this->intersects(otherMovingObject))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Enemy::hasCollisionOccurred(const MovingObject & otherMovingObject, const sf::Vector2i direction) const
+{
+	sf::FloatRect otherGlobalBoundingBox = otherMovingObject.getGlobalBoundingBox();
+	if (direction.x == -1)
+	{
+		if ((otherGlobalBoundingBox.left + otherGlobalBoundingBox.width > this->getGlobalBoundingBox().left)
+			&& (otherGlobalBoundingBox.left < this->getGlobalBoundingBox().left + this->getGlobalBoundingBox().width)
+			&& (otherGlobalBoundingBox.top + otherGlobalBoundingBox.height > this->getGlobalBoundingBox().top)
+			&& (otherGlobalBoundingBox.top < this->getGlobalBoundingBox().top + this->getGlobalBoundingBox().height))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else if (direction.x == 1)
+	{
+		if ((otherGlobalBoundingBox.left + otherGlobalBoundingBox.width < this->getGlobalBoundingBox().left)
+			&& (otherGlobalBoundingBox.left < this->getGlobalBoundingBox().left)
+			&& (otherGlobalBoundingBox.top + otherGlobalBoundingBox.height > this->getGlobalBoundingBox().top)
+			&& (otherGlobalBoundingBox.top < this->getGlobalBoundingBox().top + this->getGlobalBoundingBox().height))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else if (direction.y == -1)
+	{
+
+		if ((otherGlobalBoundingBox.left + otherGlobalBoundingBox.width > this->getGlobalBoundingBox().left)
+			&& (otherGlobalBoundingBox.left < this->getGlobalBoundingBox().left + this->getGlobalBoundingBox().width)
+			&& (otherGlobalBoundingBox.top + otherGlobalBoundingBox.height < this->getGlobalBoundingBox().top)
+			&& (otherGlobalBoundingBox.top > this->getGlobalBoundingBox().top + this->getGlobalBoundingBox().height))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	return false;
+}
+
 void Enemy::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	MovingObject::draw(target, states);
@@ -154,16 +216,16 @@ void Enemy::update()
 
 void Enemy::update(sf::Vector2i direction)
 {
-	this->move(direction);
+	this->move(direction , this->SPEEDMULTIPLIER);
 	this->animation();
 }
 
 void Enemy::animation()
 {
-	if (this->localClock.getElapsedTime().asSeconds() >= TIMEDELAY)
+	if (this->localClock.getElapsedTime().asSeconds() >= this->TIMEDELAY)
 	{
 		sf::IntRect keyFrame = this->getKeyFrameRect();
-		if (keyFrame.left == keyFrame.width * (NROFKEYFRAMES - 1))
+		if (keyFrame.left == keyFrame.width * (this->NROFKEYFRAMES - 1))
 		{
 			this->setKeyFrameRect(sf::IntRect(0, 0, keyFrame.width, keyFrame.height));
 		}

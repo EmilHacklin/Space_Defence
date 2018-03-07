@@ -15,7 +15,7 @@ private:
 	sf::Texture texture;
 	sf::IntRect keyFrameRect;
 	static sf::Clock globalClock;
-	static float speed;
+	static float globalSpeed;
 public:
 	MovingObject(const sf::Texture &texture = sf::Texture(), const sf::Vector2f sizeOfKeyFrame = sf::Vector2f(), const sf::Vector2f position = sf::Vector2f(), const sf::Vector2f scale = sf::Vector2f(1.0, 1.0)) throw (...);
 	MovingObject(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale) throw (...);
@@ -39,6 +39,7 @@ public:
 	sf::Vector2u getSizeOfTexture() const;
 	sf::IntRect getKeyFrameRect() const;
 	sf::FloatRect getGlobalBoundingBox() const;
+	bool intersects(const MovingObject &otherMovingObject) const;
 	void setTexture(const string filePath, const sf::Vector2u sizeOfKeyFrame) throw(...);
 	void setTexture(const sf::Texture texture, const sf::Vector2u sizeOfKeyFrame);
 	void setKeyFrameRect(const sf::IntRect keyFrameRect) throw(...);
@@ -50,8 +51,8 @@ public:
 	static void resetGlobalClock();
 	static void increaseSpeed();
 	static void resetSpeed();
-	void move(const sf::Vector2i direction);
-	void move(const int directionX, const int directionY);
+	void move(const sf::Vector2i direction, const float speedMultiplier);
+	void move(const int directionX, const int directionY, const float speedMultiplier);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update() = 0;
 	~MovingObject();
