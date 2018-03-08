@@ -18,7 +18,9 @@ public:
 	Wave(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float scaleX, const float scaleY, const int nrOfEnemies, const float yOffset) throw(...);
 	Wave(const Wave &originalWave);
 	Wave& operator=(const Wave &originalWave);
-	bool hasCollisionOccurred(const MovingObject &otherMovingObject) const;
+	bool haveCollisionOccurred(MovingObject &otherMovingObject) const;
+	int indexIfCollisionOccurred(MovingObject &otherMovingObject) const;
+	void reduceHealthOfEnemy(const int index) throw(...);
 	bool isWaveDestroyed() const;
 	int getNrOfEnemies() const;
 	sf::Vector2f getPositionOfEnemy(const int index) const throw(...);

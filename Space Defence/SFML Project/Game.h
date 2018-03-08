@@ -15,14 +15,14 @@ private:
 	int randomNr;
 	const float TIMEDELAY = 1;
 	const int DEAFULTNROFWAVES = 3;
-	Player player;
-	Projectile *projectiles;
+	Player *player;
+	Projectile* *projectiles;
 	Wave *waves;
 	const int NROFPROJECTILES = 20;
 	int nrOfWaves;
 	int nrOfRounds;
 	static void increseSpeed();
-	bool isWavesDestroyed() const;
+	bool isWavesDestroyed();
 	bool havePlayerCollided() const;
 	void newWaves();
 public:

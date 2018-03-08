@@ -94,6 +94,18 @@ Projectile & Projectile::operator=(const Projectile &originalProjectile)
 	return *this;
 }
 
+bool Projectile::isActive() const
+{
+	if (this->getPosition().y > 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void Projectile::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	MovingObject::draw(target, states);
@@ -101,7 +113,7 @@ void Projectile::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Projectile::update()
 {
-	this->move(0, 1 , this->SPEEDMULTIPLIER);
+	this->move(0, -1 , this->SPEEDMULTIPLIER);
 }
 
 Projectile::~Projectile()

@@ -26,7 +26,7 @@ public:
 	Projectile(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY);
 	Projectile(const Projectile &originalProjectile);
 	Projectile& operator=(const Projectile &originalProjectile);
-
+	bool isActive() const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
 	~Projectile();

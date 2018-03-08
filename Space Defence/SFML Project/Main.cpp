@@ -10,7 +10,7 @@ int main()
 	try
 	{
 		windowSize = sf::Vector2u(1200, 800);
-		sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Space Defense", sf::Style::Close);
+		sf::RenderWindow window(sf::VideoMode(windowSize.x, windowSize.y), "Space Defence", sf::Style::Close);
 		Game game;
 		while (!game.isGameOver() && window.isOpen())
 		{
