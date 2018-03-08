@@ -22,7 +22,7 @@ private:
 	int nrOfWaves;
 	int nrOfRounds;
 	static void increseSpeed();
-	bool isWavesDestroyed() const;
+	bool isWavesDestroyed();
 	void newWaves();
 public:
 	Game() throw(...);

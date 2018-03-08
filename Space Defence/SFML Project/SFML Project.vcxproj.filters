@@ -22,7 +22,9 @@
     <ClCompile Include="Wave.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Health.h">
@@ -43,7 +45,9 @@
     <ClInclude Include="Wave.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">

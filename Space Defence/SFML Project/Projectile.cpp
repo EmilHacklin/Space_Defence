@@ -94,6 +94,30 @@ Projectile & Projectile::operator=(const Projectile &originalProjectile)
 	return *this;
 }
 
+bool Projectile::isActive() const
+{
+	if (this->getPosition().y > 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+void Projectile::setPosition(const sf::Vector2f position) throw(...)
+{
+	if (position.x < 0 || position.x > windowSize.x || position.y < 0 || position.y > windowSize.y)
+	{
+		throw "Exception: Invalid position";
+	}
+	else
+	{
+		this->setPosition(position);
+	}
+}
+
 void Projectile::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	MovingObject::draw(target, states);
@@ -101,7 +125,7 @@ void Projectile::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Projectile::update()
 {
-	this->move(0, 1);
+	this->move(0, 1, this->SPEEDMULTIPLIER);
 }
 
 Projectile::~Projectile()
