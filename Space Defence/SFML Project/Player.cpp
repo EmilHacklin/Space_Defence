@@ -226,7 +226,7 @@ void Player::input()
 		this->move(1, 0, this->SPEEDMULTIPLIER);
 		this->animation(1);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->inputClock.getElapsedTime().asSeconds() >= 0.5)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->inputClock.getElapsedTime().asSeconds() >= 0.5)
 	{
 		int i = 0;
 		sf::Vector2f position = this->getPosition();
