@@ -32,7 +32,7 @@ bool Game::havePlayerCollided() const
 {
 	for (int i = 0; i < this->nrOfWaves; i++)
 	{
-		if (this->waves[i].hasCollisionOccurred(this->player))
+		if (this->waves[i].haveCollisionOccurred(*this->player))
 		{
 			return true;
 		}
@@ -159,7 +159,7 @@ void Game::update()
 	if (this->havePlayerCollided())
 	{
 		this->newWaves();
-		this->player.reduceHealth();
+		this->player->reduceHealth();
 	}
 	for (int i = 0; i < this->NROFPROJECTILES; i++)
 	{
@@ -205,7 +205,7 @@ unsigned int Game::getNrOfRounds() const
 
 bool Game::isGameOver() const
 {
-	if (this->player.isAlive())
+	if (this->player->isAlive())
 	{
 		return false;
 	}
