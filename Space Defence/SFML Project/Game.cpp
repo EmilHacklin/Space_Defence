@@ -17,12 +17,26 @@ bool Game::isWavesDestroyed() const
 	return true;
 }
 
+bool Game::havePlayerCollided() const
+{
+	for (int i = 0; i < this->nrOfWaves; i++)
+	{
+		if (this->waves[i].hasCollisionOccurred(this->player))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 void Game::newWaves()
 {
 	for (int i = 0; i < this->DEAFULTNROFWAVES; i++)
 	{
-		this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + 10);
+		this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
 	}
+	this->nrOfRounds++;
+	MovingObject::increaseSpeed();
 }
 
 Game::Game()
@@ -37,7 +51,6 @@ Game::Game()
 		this->backgroundImage.setScale(this->scale);
 		this->randomNr = rand() % 3;
 		this->lockalClock;
-		MovingObject::resetSpeed();
 		this->player = Player("../Resources/Player.png", PLAYERIMAGESIZE , static_cast<float>((windowSize.x - ((PLAYERIMAGESIZE.x * this->scale.x) / 2)) / 2.0), static_cast<float>(windowSize.y - (PLAYERIMAGESIZE.y * this->scale.y)), this->scale);
 		this->projectiles = new Projectile[NROFPROJECTILES];
 		for (int i = 0; i < NROFPROJECTILES; i++)
@@ -51,6 +64,7 @@ Game::Game()
 			this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
 		}
 		this->nrOfRounds = 1;
+		MovingObject::resetGlobalClock();
 	}
 	else
 	{
@@ -122,7 +136,11 @@ void Game::update()
 	else
 	{
 		this->newWaves();
-		this->nrOfRounds++;
+	}
+	if (this->havePlayerCollided())
+	{
+		this->newWaves();
+		this->player.reduceHealth();
 	}
 	MovingObject::resetGlobalClock();
 }
@@ -144,7 +162,14 @@ unsigned int Game::getNrOfRounds() const
 
 bool Game::isGameOver() const
 {
-	return this->player.isAlive();
+	if (this->player.isAlive())
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 Game::~Game()
