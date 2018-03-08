@@ -34,6 +34,7 @@ void Game::newWaves()
 	{
 		this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
 	}
+	this->nrOfWaves = this->DEAFULTNROFWAVES;
 }
 
 Game::Game()
@@ -53,7 +54,7 @@ Game::Game()
 		{
 			this->projectiles[i] = new Projectile("../Resources/Projectile.png", PROJECTILEIMAGESIZE, 0.0, 0.0, this->scale);
 		}
-		this->player = Player("../Resources/Player.png", PLAYERIMAGESIZE , static_cast<float>((windowSize.x - ((PLAYERIMAGESIZE.x * this->scale.x) / 2)) / 2.0), static_cast<float>(windowSize.y - (PLAYERIMAGESIZE.y * this->scale.y)), this->scale, this->projectiles, this->NROFPROJECTILES);
+		this->player = new Player("../Resources/Player.png", PLAYERIMAGESIZE , static_cast<float>((windowSize.x - ((PLAYERIMAGESIZE.x * this->scale.x) / 2)) / 2.0), static_cast<float>(windowSize.y - (PLAYERIMAGESIZE.y * this->scale.y)), this->scale, this->projectiles, this->NROFPROJECTILES);
 		this->nrOfWaves = this->DEAFULTNROFWAVES;
 		this->waves = new Wave[this->nrOfWaves];
 		for (int i = 0; i < this->nrOfWaves; i++)
@@ -71,7 +72,7 @@ Game::Game()
 
 void Game::update()
 {
-	this->player.update();
+	this->player->update();
 	for (int i = 0; i < this->NROFPROJECTILES; i++)
 	{
 		if (this->projectiles[i]->isActive())
@@ -147,13 +148,15 @@ void Game::update()
 		if (this->projectiles[i]->isActive())
 		{
 			int index = -1, x = 0;
-			while (index = -1 && x < this->nrOfWaves)
+			while (index == -1 && x < this->nrOfWaves)
 			{
 				index = this->waves[x].indexIfCollisionOccurred(*this->projectiles[i]);
+				x++;
 			}
 			if (index != -1)
 			{
-				this->waves[x].reduceHealthOfEnemy(index);
+				this->waves[x - 1].reduceHealthOfEnemy(index);
+				this->projectiles[i]->setPosition(0, 0);
 			}
 		}
 	}
@@ -163,7 +166,7 @@ void Game::update()
 void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(this->backgroundImage, states);
-	this->player.draw(target, states);
+	this->player->draw(target, states);
 	for (int i = 0; i < this->NROFPROJECTILES; i++)
 	{
 		if (this->projectiles[i]->isActive())
@@ -184,14 +187,14 @@ unsigned int Game::getNrOfRounds() const
 
 bool Game::isGameOver() const
 {
-	return this->player.isAlive();
+	return this->player->isAlive();
 }
 
 Game::~Game()
 {
-	for (int i = 0; this->NROFPROJECTILES; i++)
+	for (int i = 0; i < this->NROFPROJECTILES; i++)
 	{
-		delete this->projectiles;
+		delete this->projectiles[i];
 	}
 	delete[] this->projectiles;
 	delete[] this->waves;

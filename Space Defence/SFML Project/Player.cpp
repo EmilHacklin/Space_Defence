@@ -7,7 +7,8 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
@@ -17,7 +18,8 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const s
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
@@ -27,7 +29,8 @@ Player::Player(const sf::Texture & texture, const float keyFrameWidth, const flo
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
@@ -37,7 +40,8 @@ Player::Player(const string filePath, const float keyFrameWidth, const float key
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
@@ -47,7 +51,8 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
@@ -57,7 +62,8 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const f
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
@@ -67,7 +73,8 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
@@ -77,7 +84,8 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const s
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
@@ -87,7 +95,8 @@ Player::Player(const sf::Texture & texture, const float keyFrameWidth, const flo
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
@@ -97,7 +106,8 @@ Player::Player(const string filePath, const float keyFrameWidth, const float key
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
@@ -107,7 +117,8 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
@@ -117,7 +128,8 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const f
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
@@ -127,7 +139,8 @@ Player::Player(const sf::Texture & texture, const float keyFrameWidth, const flo
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
@@ -137,7 +150,8 @@ Player::Player(const string filePath, const float keyFrameWidth, const float key
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
@@ -147,7 +161,8 @@ Player::Player(const sf::Texture & texture, const float keyFrameWidth, const flo
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
@@ -157,7 +172,8 @@ Player::Player(const string filePath, const float keyFrameWidth, const float key
 	this->projectiles = projectiles;
 	this->nrOfProjectiles = nrOfProjectiles;
 	this->angle = 0;
-	this->localClock;
+	this->inputClock;
+	this->animationClock;
 }
 
 Player::Player(const Player &originalPlayer):
@@ -167,7 +183,8 @@ Player::Player(const Player &originalPlayer):
 	this->projectiles = originalPlayer.projectiles;
 	this->nrOfProjectiles = originalPlayer.nrOfProjectiles;
 	this->angle = originalPlayer.angle;
-	this->localClock = originalPlayer.localClock;
+	this->inputClock = originalPlayer.inputClock;
+	this->animationClock = originalPlayer.animationClock;
 }
 
 Player & Player::operator=(const Player &originalPlayer)
@@ -180,7 +197,8 @@ Player & Player::operator=(const Player &originalPlayer)
 		this->projectiles = originalPlayer.projectiles;
 		this->nrOfProjectiles = originalPlayer.nrOfProjectiles;
 		this->angle = originalPlayer.angle;
-		this->localClock = originalPlayer.localClock;
+		this->inputClock = originalPlayer.inputClock;
+		this->animationClock = originalPlayer.animationClock;
 	}
 	return *this;
 }
@@ -208,15 +226,16 @@ void Player::input()
 		this->move(1, 0, this->SPEEDMULTIPLIER);
 		this->animation(1);
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->inputClock.getElapsedTime().asSeconds() >= 0.5)
 	{
 		int i = 0;
 		sf::Vector2f position = this->getPosition();
-		while (this->projectiles[i]->isActive())
+		while (this->projectiles[i]->isActive() && i < this->nrOfProjectiles - 1)
 		{
 			i++;
 		}
-		this->projectiles[i]->setPosition(position.x + ((PLAYERIMAGESIZE.x * this->getScale().x) / 2), position.y);
+		this->projectiles[i]->setPosition(position.x + (this->getGlobalBoundingBox().width / 2) - (this->projectiles[i]->getGlobalBoundingBox().width / 2), position.y);
+		this->inputClock.restart();
 	} 
 	else
 	{
@@ -227,7 +246,7 @@ void Player::input()
 void Player::animation(const int direction)
 {
 	sf::IntRect keyFrameRect = this->getKeyFrameRect();
-	if (direction == -1 && this->angle > -(this->NROFKEYFRAMES / 2) && this->localClock.getElapsedTime().asSeconds() > this->TIMEDELAY)
+	if (direction == -1 && this->angle > -(this->NROFKEYFRAMES / 2) && this->animationClock.getElapsedTime().asSeconds() > this->TIMEDELAY)
 	{
 		if (this->angle >= 0)
 		{
@@ -240,9 +259,9 @@ void Player::animation(const int direction)
 			this->angle--;
 		}
 		this->setKeyFrameRect(keyFrameRect);
-		this->localClock.restart();
+		this->animationClock.restart();
 	}
-	else if (direction == 1 && this->angle < (this->NROFKEYFRAMES / 2) && this->localClock.getElapsedTime().asSeconds() > this->TIMEDELAY)
+	else if (direction == 1 && this->angle < (this->NROFKEYFRAMES / 2) && this->animationClock.getElapsedTime().asSeconds() > this->TIMEDELAY)
 	{
 		if (this->angle <= 0)
 		{
@@ -255,9 +274,9 @@ void Player::animation(const int direction)
 			this->angle++;
 		}
 		this->setKeyFrameRect(keyFrameRect);
-		this->localClock.restart();
+		this->animationClock.restart();
 	}
-	else if (direction == 0 && this->angle != 0 && this->localClock.getElapsedTime().asSeconds() > TIMEDELAY)
+	else if (direction == 0 && this->angle != 0 && this->animationClock.getElapsedTime().asSeconds() > TIMEDELAY)
 	{
 		if (this->angle == 1)
 		{
@@ -277,7 +296,7 @@ void Player::animation(const int direction)
 			keyFrameRect.top -= keyFrameRect.height;
 		}
 		this->setKeyFrameRect(keyFrameRect);
-		this->localClock.restart();
+		this->animationClock.restart();
 	}
 }
 

@@ -8,7 +8,7 @@ class Enemy : public MovingObject
 {
 private:
 	Health health;
-	sf::Clock localClock;
+	sf::Clock animationClock;
 	const int NROFKEYFRAMES = 15;
 	const double TIMEDELAY = 0.075;
 	const float SPEEDMULTIPLIER = 1;

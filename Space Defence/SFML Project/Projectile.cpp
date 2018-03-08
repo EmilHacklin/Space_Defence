@@ -106,30 +106,6 @@ bool Projectile::isActive() const
 	}
 }
 
-void Projectile::setPosition(const float positionX, const float positionY) throw(...)
-{
-	if (positionX < 0 || positionX > windowSize.x || positionY < 0 || positionY > windowSize.y)
-	{
-		throw "Exception: Invalid position";
-	}
-	else
-	{
-		this->setPosition(positionX, positionY);
-	}
-}
-
-void Projectile::setPosition(const sf::Vector2f position) throw(...)
-{
-	if (position.x < 0 || position.x > windowSize.x || position.y < 0 || position.y > windowSize.y)
-	{
-		throw "Exception: Invalid position";
-	}
-	else
-	{
-		this->setPosition(position);
-	}
-}
-
 void Projectile::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	MovingObject::draw(target, states);
@@ -137,7 +113,7 @@ void Projectile::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Projectile::update()
 {
-	this->move(0, 1, this->SPEEDMULTIPLIER);
+	this->move(0, -1, this->SPEEDMULTIPLIER);
 }
 
 Projectile::~Projectile()

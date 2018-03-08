@@ -204,7 +204,7 @@ void Wave::reduceHealthOfEnemy(const int index) throw(...)
 		if (!this->enemies[index]->isAlive())
 		{
 			delete this->enemies[index];
-			if (!index == this->nrOfEnemies - 1)
+			if (index != this->nrOfEnemies - 1)
 			{
 				this->enemies[index] = this->enemies[this->nrOfEnemies - 1];
 			}

@@ -15,7 +15,7 @@ private:
 	int randomNr;
 	const float TIMEDELAY = 1;
 	const int DEAFULTNROFWAVES = 3;
-	Player player;
+	Player *player;
 	Projectile* *projectiles;
 	Wave *waves;
 	const int NROFPROJECTILES = 20;

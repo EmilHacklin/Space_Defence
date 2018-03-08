@@ -27,8 +27,6 @@ public:
 	Projectile(const Projectile &originalProjectile);
 	Projectile& operator=(const Projectile &originalProjectile);
 	bool isActive() const;
-	void setPosition(const float positionX, const float positionY) throw(...);
-	void setPosition(const sf::Vector2f position) throw(...);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
 	~Projectile();
