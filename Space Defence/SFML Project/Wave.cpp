@@ -168,16 +168,49 @@ Wave & Wave::operator=(const Wave &originalWave)
 	return *this;
 }
 
-bool Wave::hasCollisionOccurred(MovingObject &otherMovingObject) const
+bool Wave::haveCollisionOccurred(MovingObject &otherMovingObject) const
 {
 	for (int i = 0; i < this->nrOfEnemies; i++)
 	{
-		if (this->enemies[i]->hasCollisionOccurred(otherMovingObject.getGlobalBoundingBox()))
+		if (this->enemies[i]->haveCollisionOccurred(otherMovingObject.getGlobalBoundingBox()))
 		{
 			return true;
 		}
 	}
 	return false;
+}
+
+int Wave::indexIfCollisionOccurred(MovingObject & otherMovingObject) const
+{
+	for (int i = 0; i < this->nrOfEnemies; i++)
+	{
+		if (this->enemies[i]->haveCollisionOccurred(otherMovingObject.getGlobalBoundingBox()))
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+void Wave::reduceHealthOfEnemy(const int index) throw(...)
+{
+	if (index < 0 || index >= this->nrOfEnemies)
+	{
+		throw "Exception: Invalid enemy index";
+	}
+	else
+	{
+		this->enemies[index]->reduceHealth();
+		if (!this->enemies[index]->isAlive())
+		{
+			delete this->enemies[index];
+			if (!index == this->nrOfEnemies - 1)
+			{
+				this->enemies[index] = this->enemies[this->nrOfEnemies - 1];
+			}
+			this->nrOfEnemies--;
+		}
+	}
 }
 
 bool Wave::isWaveDestroyed() const
@@ -310,7 +343,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 			index = 0;
 			while (!CollisionOccurred && index < nrOfWaves)
 			{
-				if (index != curentIndex && otherWaves[index].hasCollisionOccurred(*this->enemies[0]))
+				if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[0]))
 				{
 					CollisionOccurred = true;
 				}
@@ -333,7 +366,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 				index = 0;
 				while (!CollisionOccurred && index < nrOfWaves)
 				{
-					if (index != curentIndex && otherWaves[index].hasCollisionOccurred(*this->enemies[1]))
+					if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[1]))
 					{
 						CollisionOccurred = true;
 					}
@@ -358,7 +391,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 			index = 0;
 			while (!CollisionOccurred && index < nrOfWaves)
 			{
-				if (index != curentIndex && otherWaves[index].hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]))
+				if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]))
 				{
 					CollisionOccurred = true;
 				}
@@ -381,7 +414,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 				index = 0;
 				while (!CollisionOccurred && index < nrOfWaves)
 				{
-					if (index != curentIndex && otherWaves[index].hasCollisionOccurred(*this->enemies[i]))
+					if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[i]))
 					{
 						CollisionOccurred = true;
 					}
@@ -408,7 +441,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 				index = 0;
 				while (!CollisionOccurred && index < nrOfWaves)
 				{
-					if (index != curentIndex && otherWaves[index].hasCollisionOccurred(*this->enemies[i]))
+					if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[i]))
 					{
 						CollisionOccurred = true;
 					}

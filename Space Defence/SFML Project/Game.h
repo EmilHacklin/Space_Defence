@@ -16,7 +16,7 @@ private:
 	const float TIMEDELAY = 1;
 	const int DEAFULTNROFWAVES = 3;
 	Player player;
-	Projectile *projectiles;
+	Projectile* *projectiles;
 	Wave *waves;
 	const int NROFPROJECTILES = 20;
 	int nrOfWaves;

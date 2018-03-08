@@ -130,7 +130,7 @@ Enemy & Enemy::operator=(const Enemy &originalEnemy)
 	return *this;
 }
 
-bool Enemy::hasCollisionOccurred(sf::FloatRect boundingBox) const
+bool Enemy::haveCollisionOccurred(sf::FloatRect boundingBox) const
 {
 	if (boundingBox.intersects(this->getGlobalBoundingBox()))
 	{
@@ -142,7 +142,7 @@ bool Enemy::hasCollisionOccurred(sf::FloatRect boundingBox) const
 	}
 }
 
-bool Enemy::hasCollisionOccurred(const MovingObject & otherMovingObject) const
+bool Enemy::haveCollisionOccurred(const MovingObject & otherMovingObject) const
 {
 	if (this->intersects(otherMovingObject))
 	{
@@ -185,6 +185,16 @@ void Enemy::animation()
 		}
 		this->localClock.restart();
 	}
+}
+
+bool Enemy::isAlive() const
+{
+	return this->health.isAlive();
+}
+
+void Enemy::reduceHealth()
+{
+	this->health.reduceHealthPoints();
 }
 
 Enemy::~Enemy()

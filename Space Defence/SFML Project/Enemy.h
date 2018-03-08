@@ -31,11 +31,13 @@ public:
 	Enemy(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY);
 	Enemy(const Enemy &originalEnemy);
 	Enemy& operator=(const Enemy &originalEnemy);
-	bool hasCollisionOccurred(sf::FloatRect boundingBox) const;
-	bool hasCollisionOccurred(const MovingObject &otherMovingObject) const;
+	bool haveCollisionOccurred(sf::FloatRect boundingBox) const;
+	bool haveCollisionOccurred(const MovingObject &otherMovingObject) const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
 	virtual void update(sf::Vector2i direction);
 	void animation();
+	bool isAlive() const;
+	void reduceHealth();
 	~Enemy();
 };

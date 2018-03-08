@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(texture, sizeOfKeyFrame, position, scale)
 {
 	this->health;
@@ -10,7 +10,7 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 	this->localClock;
 }
 
-Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(filePath, sizeOfKeyFrame, position, scale)
 {
 	this->health;
@@ -20,7 +20,7 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const s
 	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scale)
 {
 	this->health;
@@ -30,7 +30,7 @@ Player::Player(const sf::Texture & texture, const float keyFrameWidth, const flo
 	this->localClock;
 }
 
-Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scale)
 {
 	this->health;
@@ -40,7 +40,7 @@ Player::Player(const string filePath, const float keyFrameWidth, const float key
 	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(texture, sizeOfKeyFrame, positionX, positionY, scale)
 {
 	this->health;
@@ -50,7 +50,7 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 	this->localClock;
 }
 
-Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(filePath, sizeOfKeyFrame, positionX, positionY, scale)
 {
 	this->health;
@@ -60,7 +60,7 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const f
 	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(texture, sizeOfKeyFrame, position, scaleX, scaleY)
 {
 	this->health;
@@ -70,7 +70,7 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 	this->localClock;
 }
 
-Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(filePath, sizeOfKeyFrame, position, scaleX, scaleY)
 {
 	this->health;
@@ -80,7 +80,7 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const s
 	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
 {
 	this->health;
@@ -90,7 +90,7 @@ Player::Player(const sf::Texture & texture, const float keyFrameWidth, const flo
 	this->localClock;
 }
 
-Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
 {
 	this->health;
@@ -100,7 +100,7 @@ Player::Player(const string filePath, const float keyFrameWidth, const float key
 	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(texture, sizeOfKeyFrame, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
@@ -110,7 +110,7 @@ Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, c
 	this->localClock;
 }
 
-Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(filePath, sizeOfKeyFrame, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
@@ -120,7 +120,7 @@ Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const f
 	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
 {
 	this->health;
@@ -130,7 +130,7 @@ Player::Player(const sf::Texture & texture, const float keyFrameWidth, const flo
 	this->localClock;
 }
 
-Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
 {
 	this->health;
@@ -140,7 +140,7 @@ Player::Player(const string filePath, const float keyFrameWidth, const float key
 	this->localClock;
 }
 
-Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
@@ -150,7 +150,7 @@ Player::Player(const sf::Texture & texture, const float keyFrameWidth, const flo
 	this->localClock;
 }
 
-Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile *projectiles, const int nrOfProjectiles):
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
 {
 	this->health;
@@ -208,6 +208,16 @@ void Player::input()
 		this->move(1, 0, this->SPEEDMULTIPLIER);
 		this->animation(1);
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		int i = 0;
+		sf::Vector2f position = this->getPosition();
+		while (this->projectiles[i]->isActive())
+		{
+			i++;
+		}
+		this->projectiles[i]->setPosition(position.x + ((PLAYERIMAGESIZE.x * this->getScale().x) / 2), position.y);
+	} 
 	else
 	{
 		this->animation(0);
