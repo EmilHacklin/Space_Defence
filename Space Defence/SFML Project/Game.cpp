@@ -39,6 +39,11 @@ Game::Game()
 		this->lockalClock;
 		MovingObject::resetSpeed();
 		this->player = Player("../Resources/Player.png", PLAYERIMAGESIZE , static_cast<float>((windowSize.x - ((PLAYERIMAGESIZE.x * this->scale.x) / 2)) / 2.0), static_cast<float>(windowSize.y - (PLAYERIMAGESIZE.y * this->scale.y)), this->scale);
+		this->projectiles = new Projectile[NROFPROJECTILES];
+		for (int i = 0; i < NROFPROJECTILES; i++)
+		{
+			this->projectiles[i] = Projectile("../Resources/Projectile.png", PROJECTILEIMAGESIZE, 0.0, 0.0, this->scale);
+		}
 		this->nrOfWaves = this->DEAFULTNROFWAVES;
 		this->waves = new Wave[this->nrOfWaves];
 		for (int i = 0; i < this->nrOfWaves; i++)
