@@ -180,18 +180,6 @@ bool Wave::hasCollisionOccurred(MovingObject &otherMovingObject) const
 	return false;
 }
 
-bool Wave::hasCollisionOccurred(MovingObject & otherMovingObject, const sf::Vector2i direction) const
-{
-	for (int i = 0; i < this->nrOfEnemies; i++)
-	{
-		if (this->enemies[i]->hasCollisionOccurred(otherMovingObject, direction))
-		{
-			return true;
-		}
-	}
-	return false;
-}
-
 bool Wave::isWaveDestroyed() const
 {
 	if (this->nrOfEnemies == 0)
@@ -299,9 +287,13 @@ void Wave::update(const sf::Vector2i direction, const Wave otherWave)
 	{
 		if (direction.x == -1)
 		{
-			if (!otherWave.hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1], direction))
+			if (!otherWave.hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]))
 			{
 				this->enemies[0]->update(direction);
+			}
+			else
+			{
+				this->enemies[0]->update();
 			}
 			if (this->nrOfEnemies > 2)
 			{
@@ -317,7 +309,7 @@ void Wave::update(const sf::Vector2i direction, const Wave otherWave)
 					}
 				}
 			}
-			if (this->nrOfEnemies > 1 && !otherWave.hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1], direction) && !this->enemies[this->nrOfEnemies - 1]->intersects(*this->enemies[this->nrOfEnemies - 2]))
+			if (this->nrOfEnemies > 1 && !otherWave.hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]) && !this->enemies[this->nrOfEnemies - 1]->intersects(*this->enemies[this->nrOfEnemies - 2]))
 			{
 				this->enemies[this->nrOfEnemies - 1]->update(direction);
 			}
@@ -328,15 +320,19 @@ void Wave::update(const sf::Vector2i direction, const Wave otherWave)
 		}
 		else if (direction.x == 1)
 		{
-			if (!otherWave.hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1], direction))
+			if (!otherWave.hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]))
 			{
 				this->enemies[this->nrOfEnemies - 1]->update(direction);
+			}
+			else
+			{
+				this->enemies[this->nrOfEnemies - 1]->update();
 			}
 			if (this->nrOfEnemies > 2)
 			{
 				for (int i = this->nrOfEnemies - 2; i > 0; i--)
 				{
-					if (!otherWave.hasCollisionOccurred(*this->enemies[i], direction) && !this->enemies[i]->intersects(*this->enemies[-i]))
+					if (!otherWave.hasCollisionOccurred(*this->enemies[i]) && !this->enemies[i]->intersects(*this->enemies[i + 1]))
 					{
 						this->enemies[i]->update(direction);
 					}
@@ -346,7 +342,7 @@ void Wave::update(const sf::Vector2i direction, const Wave otherWave)
 					}
 				}
 			}
-			if (this->nrOfEnemies > 1 && !otherWave.hasCollisionOccurred(*this->enemies[0], direction) && !this->enemies[0]->intersects(*this->enemies[1]))
+			if (this->nrOfEnemies > 1 && !otherWave.hasCollisionOccurred(*this->enemies[0]) && !this->enemies[0]->intersects(*this->enemies[1]))
 			{
 				this->enemies[0]->update(direction);
 			}
@@ -359,7 +355,106 @@ void Wave::update(const sf::Vector2i direction, const Wave otherWave)
 		{
 			for (int i = 0; i < this->nrOfEnemies; i++)
 			{
-				if (!otherWave.hasCollisionOccurred(*this->enemies[i], direction))
+				if (!otherWave.hasCollisionOccurred(*this->enemies[i]))
+				{
+					this->enemies[i]->update(direction);
+				}
+			}
+		}
+		else
+		{
+			for (int i = 0; i < this->nrOfEnemies; i++)
+			{
+				this->enemies[i]->update();
+			}
+		}
+	}
+}
+
+void Wave::update(const sf::Vector2i direction, const Wave * otherWaves, const int nrOfWaves)
+{
+	if (this->nrOfEnemies > 0)
+	{
+		bool CollisionOccurred = false;
+		if (direction.x == -1)
+		{
+			int i = 0;
+			while (!CollisionOccurred && i < nrOfWaves)
+			{
+				if (!otherWaves[i].hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]))
+				{
+					CollisionOccurred = true;
+				}
+				else
+				{
+					i++;
+				}
+			}
+			if (!CollisionOccurred)
+			{
+				this->enemies[0]->update(direction);
+			}
+			else
+			{
+				this->enemies[0]->update();
+			}
+			if (this->nrOfEnemies > 2)
+			{
+				for (int i = 1; i < this->nrOfEnemies; i++)
+				{
+					if (!this->enemies[i]->intersects(*this->enemies[i - 1]))
+					{
+						this->enemies[i]->update(direction);
+					}
+					else
+					{
+						this->enemies[i]->update();
+					}
+				}
+			}
+			if (this->nrOfEnemies > 1 && !otherWave.hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]) && !this->enemies[this->nrOfEnemies - 1]->intersects(*this->enemies[this->nrOfEnemies - 2]))
+			{
+				this->enemies[this->nrOfEnemies - 1]->update(direction);
+			}
+			else
+			{
+				this->enemies[this->nrOfEnemies - 1]->update();
+			}
+		}
+		else if (direction.x == 1)
+		{
+			if (!otherWave.hasCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]))
+			{
+				this->enemies[this->nrOfEnemies - 1]->update(direction);
+			}
+			if (this->nrOfEnemies > 2)
+			{
+				for (int i = this->nrOfEnemies - 2; i > 0; i--)
+				{
+					if (!otherWave.hasCollisionOccurred(*this->enemies[i]) && !this->enemies[i]->intersects(*this->enemies[i + 1]))
+					{
+						this->enemies[i]->update(direction);
+					}
+					else
+					{
+						this->enemies[i]->update();
+					}
+				}
+			}
+			if (this->nrOfEnemies > 1 && !otherWave.hasCollisionOccurred(*this->enemies[0]) && !this->enemies[0]->intersects(*this->enemies[1]))
+			{
+				this->enemies[0]->update(direction);
+			}
+			else
+			{
+				this->enemies[0]->update();
+			}
+		}
+		else if (direction.y == 1)
+		{
+			for (int i = 0; i < this->nrOfEnemies; i++)
+			{
+				if (!otherWave.hasCollisionOccurred(*this->enemies[i]))
 				{
 					this->enemies[i]->update(direction);
 				}

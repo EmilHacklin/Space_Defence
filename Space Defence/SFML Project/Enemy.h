@@ -33,7 +33,6 @@ public:
 	Enemy& operator=(const Enemy &originalEnemy);
 	bool hasCollisionOccurred(sf::FloatRect boundingBox) const;
 	bool hasCollisionOccurred(const MovingObject &otherMovingObject) const;
-	bool hasCollisionOccurred(const MovingObject &otherMovingObject, const sf::Vector2i direction) const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
 	virtual void update(sf::Vector2i direction);

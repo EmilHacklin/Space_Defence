@@ -13,6 +13,7 @@ private:
 	sf::Clock lockalClock;
 	int randomNr;
 	const float TIMEDELAY = 0.5;
+	const int DEAFULTNROFWAVES = 3;
 	Player player;
 	Wave *waves;
 	int nrOfWaves;

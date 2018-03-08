@@ -19,12 +19,12 @@ public:
 	Wave(const Wave &originalWave);
 	Wave& operator=(const Wave &originalWave);
 	bool hasCollisionOccurred(MovingObject &otherMovingObject) const;
-	bool hasCollisionOccurred(MovingObject &otherMovingObject, const sf::Vector2i direction) const;
 	bool isWaveDestroyed() const;
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
 	virtual void update(const sf::Vector2i direction);
 	virtual void update(const sf::Vector2i direction, const Wave otherWave);
+	virtual void update(const sf::Vector2i direction, const Wave* otherWaves, const int nrOfWaves);
 	~Wave();
 };
 

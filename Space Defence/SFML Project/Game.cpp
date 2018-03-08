@@ -19,13 +19,10 @@ bool Game::isWavesDestroyed() const
 
 void Game::newWaves()
 {
-	delete[] this->waves;
-	this->waves = new Wave[this->nrOfWaves];
-	for (int i = 0; i < this->nrOfWaves; i++)
+	for (int i = 0; i < this->DEAFULTNROFWAVES; i++)
 	{
-		this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale , 5 ,0.0);
+		this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + 5);
 	}
-	
 }
 
 Game::Game()
@@ -38,16 +35,17 @@ Game::Game()
 		this->backgroundImage.setPosition(0, 0);
 		this->scale = sf::Vector2f(windowSize.x / BACKGROUNDIMAGESIZE.x, windowSize.y / BACKGROUNDIMAGESIZE.y);
 		this->backgroundImage.setScale(this->scale);
-		this->randomNr = 0;//rand() % 3;
+		this->randomNr = rand() % 3;
 		this->lockalClock;
 		MovingObject::resetSpeed();
 		this->player = Player("../Resources/Player.png", PLAYERIMAGESIZE , static_cast<float>((windowSize.x - ((PLAYERIMAGESIZE.x * this->scale.x) / 2)) / 2.0), static_cast<float>(windowSize.y - (PLAYERIMAGESIZE.y * this->scale.y)), this->scale);
-		this->nrOfWaves = 2;
+		this->nrOfWaves = this->DEAFULTNROFWAVES;
 		this->waves = new Wave[this->nrOfWaves];
 		for (int i = 0; i < this->nrOfWaves; i++)
 		{
 			this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y));
 		}
+		this->nrOfRounds = 1;
 	}
 	else
 	{
@@ -58,44 +56,63 @@ Game::Game()
 void Game::update()
 {
 	this->player.update();
-	/*if (this->lockalClock.getElapsedTime().asSeconds() >= TIMEDELAY)
+	if (this->lockalClock.getElapsedTime().asSeconds() >= TIMEDELAY)
 	{
 		this->randomNr = rand() % 3;
 		this->lockalClock.restart();
-	}*/
-	
-	if (this->randomNr == 0)
+	}
+	if (!this->isWavesDestroyed())
 	{
-		this->waves[0].update(sf::Vector2i(-1, 0));
-		if (this->nrOfWaves > 1)
+		if (this->randomNr == 0)
 		{
-			for (int i = 1; i < this->nrOfWaves; i++)
+			for (int i = this->nrOfWaves - 1; i >= 1; i--)
 			{
 				this->waves[i].update(sf::Vector2i(-1, 0), this->waves[i - 1]);
 			}
+			if (this->nrOfWaves > 1)
+			{
+				this->waves[0].update(sf::Vector2i(-1, 0), this->waves[1]);
+			}
+			else
+			{
+				this->waves[0].update(sf::Vector2i(-1, 0));
+			}
 		}
-	}
-	else if (this->randomNr == 1)
-	{
-		this->waves[0].update(sf::Vector2i(1, 0));
-		if (this->nrOfWaves > 1)
+		else if (this->randomNr == 1)
 		{
-			for (int i = 1; i < this->nrOfWaves; i++)
+			for (int i = this->nrOfWaves - 1; i >= 1; i--)
 			{
 				this->waves[i].update(sf::Vector2i(1, 0), this->waves[i - 1]);
 			}
+			if (this->nrOfWaves > 1)
+			{
+				this->waves[0].update(sf::Vector2i(1, 0), this->waves[1]);
+			}
+			else
+			{
+				this->waves[0].update(sf::Vector2i(1, 0));
+			}
 		}
-	}
-	else if (this->randomNr == 2)
-	{
-		this->waves[0].update(sf::Vector2i(0, 1));
-		if (this->nrOfWaves > 1)
+		else if (this->randomNr == 2)
 		{
-			for (int i = 1; i < this->nrOfWaves; i++)
+			for (int i = this->nrOfWaves - 1; i >= 1; i--)
 			{
 				this->waves[i].update(sf::Vector2i(0, 1), this->waves[i - 1]);
 			}
+			if (this->nrOfWaves > 1)
+			{
+				this->waves[0].update(sf::Vector2i(0, 1), this->waves[1]);
+			}
+			else
+			{
+				this->waves[0].update(sf::Vector2i(0, 1));
+			}
 		}
+	}
+	else
+	{
+		this->newWaves();
+		this->nrOfRounds++;
 	}
 	MovingObject::resetGlobalClock();
 }

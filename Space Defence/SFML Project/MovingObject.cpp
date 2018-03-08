@@ -497,5 +497,5 @@ void MovingObject::draw(sf::RenderTarget & target, sf::RenderStates states) cons
 
 MovingObject::~MovingObject()
 {
-	//this->texture.~Texture(); //helps with memory leaks no idea why?
+	//this->texture.~Texture(); //helps with memory leaks no idea why???
 }
