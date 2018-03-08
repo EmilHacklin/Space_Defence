@@ -23,6 +23,7 @@ private:
 	int nrOfRounds;
 	static void increseSpeed();
 	bool isWavesDestroyed();
+	bool havePlayerCollided() const;
 	void newWaves();
 public:
 	Game() throw(...);

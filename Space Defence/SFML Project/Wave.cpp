@@ -168,7 +168,7 @@ Wave & Wave::operator=(const Wave &originalWave)
 	return *this;
 }
 
-bool Wave::haveCollisionOccurred(MovingObject &otherMovingObject) const
+bool Wave::hasCollisionOccurred(const MovingObject &otherMovingObject) const
 {
 	for (int i = 0; i < this->nrOfEnemies; i++)
 	{

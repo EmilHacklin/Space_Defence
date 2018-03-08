@@ -41,6 +41,7 @@ public:
 	void input();
 	void animation(const int direction);
 	bool isAlive() const;
+	void reduceHealth();
 	~Player();
 };
 

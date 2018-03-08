@@ -28,6 +28,18 @@ bool Game::isWavesDestroyed()
 	return isWavesDestroyed;
 }
 
+bool Game::havePlayerCollided() const
+{
+	for (int i = 0; i < this->nrOfWaves; i++)
+	{
+		if (this->waves[i].hasCollisionOccurred(this->player))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
 void Game::newWaves()
 {
 	for (int i = 0; i < this->DEAFULTNROFWAVES; i++)
@@ -35,6 +47,8 @@ void Game::newWaves()
 		this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
 	}
 	this->nrOfWaves = this->DEAFULTNROFWAVES;
+	this->nrOfRounds++;
+	MovingObject::increaseSpeed();
 }
 
 Game::Game()
@@ -141,7 +155,11 @@ void Game::update()
 	else
 	{
 		this->newWaves();
-		this->nrOfRounds++;
+	}
+	if (this->havePlayerCollided())
+	{
+		this->newWaves();
+		this->player.reduceHealth();
 	}
 	for (int i = 0; i < this->NROFPROJECTILES; i++)
 	{
@@ -187,7 +205,14 @@ unsigned int Game::getNrOfRounds() const
 
 bool Game::isGameOver() const
 {
-	return this->player->isAlive();
+	if (this->player.isAlive())
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 Game::~Game()

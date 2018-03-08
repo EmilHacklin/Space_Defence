@@ -305,6 +305,11 @@ bool Player::isAlive() const
 	return this->health.isAlive();
 }
 
+void Player::reduceHealth()
+{
+	this->health.reduceHealthPoints();
+}
+
 Player::~Player()
 {
 	cout << "Deleting Player" << endl;
