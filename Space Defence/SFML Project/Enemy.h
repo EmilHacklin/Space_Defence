@@ -11,7 +11,7 @@ private:
 	sf::Clock localClock;
 	const int NROFKEYFRAMES = 15;
 	const double TIMEDELAY = 0.075;
-	const float SPEEDMULTIPLIER = 0.5;
+	const float SPEEDMULTIPLIER = 1;
 public:
 	Enemy(const sf::Texture &texture = sf::Texture(), const sf::Vector2f sizeOfKeyFrame = sf::Vector2f(), const sf::Vector2f position = sf::Vector2f(), const sf::Vector2f scale = sf::Vector2f(1.0, 1.0));
 	Enemy(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale);

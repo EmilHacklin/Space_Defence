@@ -12,7 +12,7 @@ private:
 	sf::Vector2f scale;
 	sf::Clock lockalClock;
 	int randomNr;
-	const float TIMEDELAY = 0.5;
+	const float TIMEDELAY = 1;
 	const int DEAFULTNROFWAVES = 3;
 	Player player;
 	Wave *waves;

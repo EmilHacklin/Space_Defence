@@ -1,7 +1,7 @@
 #include "MovingObject.h"
 
 sf::Vector2u windowSize;
-float MovingObject::globalSpeed = 300;
+float MovingObject::globalSpeed = 100;
 sf::Clock MovingObject::globalClock;
 
 MovingObject::MovingObject(const sf::Texture &texture, const sf::Vector2f sizeOfKeyFrame,const sf::Vector2f position , const sf::Vector2f scale) throw(...)
@@ -447,7 +447,7 @@ void MovingObject::increaseSpeed()
 
 void MovingObject::resetSpeed()
 {
-	MovingObject::globalSpeed = 300;
+	MovingObject::globalSpeed = 100;
 }
 
 void MovingObject::move(const sf::Vector2i direction, const float speedMultiplier)
