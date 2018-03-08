@@ -163,24 +163,24 @@ void Player::input()
 	sf::IntRect keyFrameRect = this->getKeyFrameRect();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		this->move(-1, 0);
-		this->aniamtion(-1);
+		this->move(-1, 0, this->SPEEDMULTIPLIER);
+		this->animation(-1);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		this->move(1, 0);
-		this->aniamtion(1);
+		this->move(1, 0, this->SPEEDMULTIPLIER);
+		this->animation(1);
 	}
 	else
 	{
-		this->aniamtion(0);
+		this->animation(0);
 	}
 }
 
-void Player::aniamtion(const int direction)
+void Player::animation(const int direction)
 {
 	sf::IntRect keyFrameRect = this->getKeyFrameRect();
-	if (direction == -1 && this->angle > -(NROFKEYFRAMES / 2) && this->localClock.getElapsedTime().asSeconds() > TIMEDELAY)
+	if (direction == -1 && this->angle > -(this->NROFKEYFRAMES / 2) && this->localClock.getElapsedTime().asSeconds() > this->TIMEDELAY)
 	{
 		if (this->angle >= 0)
 		{
@@ -195,11 +195,11 @@ void Player::aniamtion(const int direction)
 		this->setKeyFrameRect(keyFrameRect);
 		this->localClock.restart();
 	}
-	else if (direction == 1 && this->angle < (NROFKEYFRAMES / 2) && this->localClock.getElapsedTime().asSeconds() > TIMEDELAY)
+	else if (direction == 1 && this->angle < (this->NROFKEYFRAMES / 2) && this->localClock.getElapsedTime().asSeconds() > this->TIMEDELAY)
 	{
 		if (this->angle <= 0)
 		{
-			keyFrameRect.top = keyFrameRect.height * ((NROFKEYFRAMES / 2) + 1);
+			keyFrameRect.top = keyFrameRect.height * ((this->NROFKEYFRAMES / 2) + 1);
 			this->angle = 1;
 		}
 		else

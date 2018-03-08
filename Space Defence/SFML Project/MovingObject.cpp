@@ -1,7 +1,7 @@
 #include "MovingObject.h"
 
 sf::Vector2u windowSize;
-float MovingObject::speed = 300;
+float MovingObject::globalSpeed = 100;
 sf::Clock MovingObject::globalClock;
 
 MovingObject::MovingObject(const sf::Texture &texture, const sf::Vector2f sizeOfKeyFrame,const sf::Vector2f position , const sf::Vector2f scale) throw(...)
@@ -315,6 +315,23 @@ sf::IntRect MovingObject::getKeyFrameRect() const
 	return this->keyFrameRect;
 }
 
+sf::FloatRect MovingObject::getGlobalBoundingBox() const
+{
+	return this->sprite.getGlobalBounds();
+}
+
+bool MovingObject::intersects(const MovingObject & otherMovingObject) const
+{
+	if (this->sprite.getGlobalBounds().intersects(otherMovingObject.sprite.getGlobalBounds()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void MovingObject::setTexture(const string filePath, const sf::Vector2u sizeOfKeyFrame) throw(...)
 {
 	if (this->texture.loadFromFile(filePath))
@@ -425,51 +442,51 @@ void MovingObject::resetGlobalClock()
 
 void MovingObject::increaseSpeed()
 {
-	MovingObject::speed += 25;
+	MovingObject::globalSpeed += 25;
 }
 
 void MovingObject::resetSpeed()
 {
-	MovingObject::speed = 300;
+	MovingObject::globalSpeed = 100;
 }
 
-void MovingObject::move(const sf::Vector2i direction)
+void MovingObject::move(const sf::Vector2i direction, const float speedMultiplier)
 {
 	if (direction.x == -1 && this->sprite.getPosition().x > 0)
 	{
-		this->sprite.move(-this->speed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x, 0);
+		this->sprite.move(-this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier, 0);
 	}
 	else if (direction.x == 1 && this->sprite.getPosition().x + this->sprite.getGlobalBounds().width < windowSize.x)
 	{
-		this->sprite.move(this->speed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x, 0);
+		this->sprite.move(this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier, 0);
 	}
 	else if (direction.y == -1 && this->sprite.getPosition().y > 0)
 	{
-		this->sprite.move(0, -this->speed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().y);
+		this->sprite.move(0, -this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().y * speedMultiplier);
 	}
 	else if (direction.y == 1 && this->sprite.getPosition().y + this->sprite.getGlobalBounds().height < windowSize.y)
 	{
-		this->sprite.move(0, this->speed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().y);
+		this->sprite.move(0, this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().y * speedMultiplier);
 	}
 }
 
-void MovingObject::move(const int directionX, const int directionY)
+void MovingObject::move(const int directionX, const int directionY, const float speedMultiplier)
 {
 	if (directionX == -1 && this->sprite.getPosition().x > 0)
 	{
-		this->sprite.move(-this->speed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x, 0);
+		this->sprite.move(-this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier, 0);
 	}
 	else if (directionX == 1 && this->sprite.getPosition().x + this->sprite.getGlobalBounds().width < windowSize.x)
 	{
-		this->sprite.move(this->speed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x, 0);
+		this->sprite.move(this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier, 0);
 	}
 	else if (directionY == -1 && this->sprite.getPosition().y > 0)
 	{
-		this->sprite.move(0, -this->speed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x);
+		this->sprite.move(0, -this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier);
 	}
 	else if (directionY == 1 && this->sprite.getPosition().y + this->sprite.getGlobalBounds().height < windowSize.y)
 	{
-		this->sprite.move(0, this->speed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x);
+		this->sprite.move(0, this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier);
 	}
 }
 
@@ -480,4 +497,5 @@ void MovingObject::draw(sf::RenderTarget & target, sf::RenderStates states) cons
 
 MovingObject::~MovingObject()
 {
+	//this->texture.~Texture(); //helps with memory leaks no idea why???
 }

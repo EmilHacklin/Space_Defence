@@ -130,6 +130,30 @@ Enemy & Enemy::operator=(const Enemy &originalEnemy)
 	return *this;
 }
 
+bool Enemy::hasCollisionOccurred(sf::FloatRect boundingBox) const
+{
+	if (boundingBox.intersects(this->getGlobalBoundingBox()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool Enemy::hasCollisionOccurred(const MovingObject & otherMovingObject) const
+{
+	if (this->intersects(otherMovingObject))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 void Enemy::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	MovingObject::draw(target, states);
@@ -142,16 +166,16 @@ void Enemy::update()
 
 void Enemy::update(sf::Vector2i direction)
 {
-	this->move(direction);
+	this->move(direction , this->SPEEDMULTIPLIER);
 	this->animation();
 }
 
 void Enemy::animation()
 {
-	if (this->localClock.getElapsedTime().asSeconds() >= TIMEDELAY)
+	if (this->localClock.getElapsedTime().asSeconds() >= this->TIMEDELAY)
 	{
 		sf::IntRect keyFrame = this->getKeyFrameRect();
-		if (keyFrame.left == keyFrame.width * (NROFKEYFRAMES - 1))
+		if (keyFrame.left == keyFrame.width * (this->NROFKEYFRAMES - 1))
 		{
 			this->setKeyFrameRect(sf::IntRect(0, 0, keyFrame.width, keyFrame.height));
 		}

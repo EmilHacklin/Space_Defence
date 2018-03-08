@@ -12,6 +12,7 @@ private:
 	sf::Clock localClock;
 	const int NROFKEYFRAMES = 11;
 	const double TIMEDELAY = 0.075;
+	const float SPEEDMULTIPLIER = 10;
 public:
 	Player(const sf::Texture &texture = sf::Texture(), const sf::Vector2f sizeOfKeyFrame = sf::Vector2f(), const sf::Vector2f position = sf::Vector2f(), const sf::Vector2f scale = sf::Vector2f(1.0, 1.0));
 	Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale);
@@ -34,7 +35,7 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
 	void input();
-	void aniamtion(const int direction);
+	void animation(const int direction);
 	bool isAlive() const;
 	~Player();
 };

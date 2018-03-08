@@ -1,5 +1,6 @@
 #pragma once
 #include"Enemy.h"
+#include<ctime>
 
 class Wave : public sf::Transformable, public sf::Drawable
 {
@@ -17,9 +18,14 @@ public:
 	Wave(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float scaleX, const float scaleY, const int nrOfEnemies, const float yOffset) throw(...);
 	Wave(const Wave &originalWave);
 	Wave& operator=(const Wave &originalWave);
+	bool hasCollisionOccurred(MovingObject &otherMovingObject) const;
 	bool isWaveDestroyed() const;
+	int getNrOfEnemies() const;
+	sf::Vector2f getPositionOfEnemy(const int index) const throw(...);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
+	virtual void update(const sf::Vector2i direction);
+	virtual void update(const sf::Vector2i direction, const Wave *otherWaves, const int nrOfWaves, const int curentIndex);
 	~Wave();
 };
 

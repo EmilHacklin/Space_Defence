@@ -11,6 +11,10 @@ private:
 	sf::Texture backgroundTexture;
 	sf::Sprite backgroundImage;
 	sf::Vector2f scale;
+	sf::Clock lockalClock;
+	int randomNr;
+	const float TIMEDELAY = 1;
+	const int DEAFULTNROFWAVES = 3;
 	Player player;
 	Projectile *projectiles;
 	Wave *waves;
@@ -21,7 +25,7 @@ private:
 	bool isWavesDestroyed() const;
 	void newWaves();
 public:
-	Game(int nrOfWaves = 3) throw(...);
+	Game() throw(...);
 	virtual void update();
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	unsigned int getNrOfRounds() const;
