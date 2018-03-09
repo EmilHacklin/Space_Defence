@@ -27,7 +27,7 @@ public:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
 	virtual void update(const sf::Vector2i direction);
-	virtual void update(const sf::Vector2i direction, const Wave *otherWaves, const int nrOfWaves, const int curentIndex);
+	virtual void update(const sf::Vector2i direction, Wave* *otherWaves, const int nrOfWaves, const int curentIndex);
 	~Wave();
 };
 

@@ -14,11 +14,12 @@ private:
 	int angle;
 	sf::Clock inputClock;
 	sf::Clock animationClock;
+	void input();
 	const int NROFKEYFRAMES = 11;
 	const double TIMEDELAY = 0.075;
 	const float SPEEDMULTIPLIER = 10;
 public:
-	Player(const sf::Texture &texture = sf::Texture(), const sf::Vector2f sizeOfKeyFrame = sf::Vector2f(), const sf::Vector2f position = sf::Vector2f(), const sf::Vector2f scale = sf::Vector2f(1.0, 1.0), Projectile* *projectiles = new Projectile*[1], const int nrOfProjectiles = 0);
+	Player(const sf::Texture &texture = sf::Texture(), const sf::Vector2f sizeOfKeyFrame = sf::Vector2f(), const sf::Vector2f position = sf::Vector2f(), const sf::Vector2f scale = sf::Vector2f(1.0, 1.0), Projectile* *projectiles = nullptr, const int nrOfProjectiles = 0);
 	Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles);
 	Player(const sf::Texture &texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles);
 	Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles);
@@ -38,7 +39,6 @@ public:
 	Player& operator=(const Player &originalPlayer);
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	virtual void update();
-	void input();
 	void animation(const int direction);
 	bool isAlive() const;
 	void reduceHealth();

@@ -158,6 +158,7 @@ Wave & Wave::operator=(const Wave &originalWave)
 {
 	if (&originalWave != this)
 	{
+		this->~Wave();
 		this->nrOfEnemies = originalWave.nrOfEnemies;
 		this->enemies = new Enemy*[this->nrOfEnemies];
 		for (int i = 0; i < this->nrOfEnemies; i++)
@@ -172,7 +173,7 @@ bool Wave::haveCollisionOccurred(MovingObject &otherMovingObject) const
 {
 	for (int i = 0; i < this->nrOfEnemies; i++)
 	{
-		if (this->enemies[i]->haveCollisionOccurred(otherMovingObject.getGlobalBoundingBox()))
+		if (this->enemies[i]->haveCollisionOccurred(otherMovingObject))
 		{
 			return true;
 		}
@@ -184,7 +185,7 @@ int Wave::indexIfCollisionOccurred(MovingObject & otherMovingObject) const
 {
 	for (int i = 0; i < this->nrOfEnemies; i++)
 	{
-		if (this->enemies[i]->haveCollisionOccurred(otherMovingObject.getGlobalBoundingBox()))
+		if (this->enemies[i]->haveCollisionOccurred(otherMovingObject))
 		{
 			return i;
 		}
@@ -331,7 +332,7 @@ void Wave::update(const sf::Vector2i direction)
 	}
 }
 
-void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const int nrOfWaves, const int curentIndex)
+void Wave::update(const sf::Vector2i direction, Wave* *otherWaves, const int nrOfWaves, const int curentIndex)
 {
 	if (this->nrOfEnemies > 0)
 	{
@@ -343,7 +344,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 			index = 0;
 			while (!CollisionOccurred && index < nrOfWaves)
 			{
-				if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[0]))
+				if (index != curentIndex && otherWaves[index]->haveCollisionOccurred(*this->enemies[0]))
 				{
 					CollisionOccurred = true;
 				}
@@ -366,7 +367,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 				index = 0;
 				while (!CollisionOccurred && index < nrOfWaves)
 				{
-					if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[1]))
+					if (index != curentIndex && otherWaves[index]->haveCollisionOccurred(*this->enemies[1]))
 					{
 						CollisionOccurred = true;
 					}
@@ -391,7 +392,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 			index = 0;
 			while (!CollisionOccurred && index < nrOfWaves)
 			{
-				if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]))
+				if (index != curentIndex && otherWaves[index]->haveCollisionOccurred(*this->enemies[this->nrOfEnemies - 1]))
 				{
 					CollisionOccurred = true;
 				}
@@ -414,7 +415,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 				index = 0;
 				while (!CollisionOccurred && index < nrOfWaves)
 				{
-					if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[i]))
+					if (index != curentIndex && otherWaves[index]->haveCollisionOccurred(*this->enemies[i]))
 					{
 						CollisionOccurred = true;
 					}
@@ -441,7 +442,7 @@ void Wave::update(const sf::Vector2i direction, const Wave *otherWaves, const in
 				index = 0;
 				while (!CollisionOccurred && index < nrOfWaves)
 				{
-					if (index != curentIndex && otherWaves[index].haveCollisionOccurred(*this->enemies[i]))
+					if (index != curentIndex && otherWaves[index]->haveCollisionOccurred(*this->enemies[i]))
 					{
 						CollisionOccurred = true;
 					}
@@ -476,6 +477,7 @@ Wave::~Wave()
 	{
 		delete this->enemies[i];
 	}
+	this->nrOfEnemies = 0;
 	delete[] this->enemies;
 	cout << "Deleting Wave" << endl;
 }

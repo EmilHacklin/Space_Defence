@@ -1,218 +1,5 @@
 #include "Player.h"
 
-Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(texture, sizeOfKeyFrame, position, scale)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(filePath, sizeOfKeyFrame, position, scale)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scale)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scale)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(texture, sizeOfKeyFrame, positionX, positionY, scale)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(filePath, sizeOfKeyFrame, positionX, positionY, scale)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(texture, sizeOfKeyFrame, position, scaleX, scaleY)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(filePath, sizeOfKeyFrame, position, scaleX, scaleY)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(texture, sizeOfKeyFrame, positionX, positionY, scaleX, scaleY)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(filePath, sizeOfKeyFrame, positionX, positionY, scaleX, scaleY)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
-	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
-{
-	this->health;
-	this->projectiles = projectiles;
-	this->nrOfProjectiles = nrOfProjectiles;
-	this->angle = 0;
-	this->inputClock;
-	this->animationClock;
-}
-
-Player::Player(const Player &originalPlayer):
-	MovingObject(originalPlayer)
-{
-	this->health = originalPlayer.health;
-	this->projectiles = originalPlayer.projectiles;
-	this->nrOfProjectiles = originalPlayer.nrOfProjectiles;
-	this->angle = originalPlayer.angle;
-	this->inputClock = originalPlayer.inputClock;
-	this->animationClock = originalPlayer.animationClock;
-}
-
-Player & Player::operator=(const Player &originalPlayer)
-{
-	if (&originalPlayer != this)
-	{
-		this->~Player();
-		MovingObject::operator=(originalPlayer);
-		this->health = originalPlayer.health;
-		this->projectiles = originalPlayer.projectiles;
-		this->nrOfProjectiles = originalPlayer.nrOfProjectiles;
-		this->angle = originalPlayer.angle;
-		this->inputClock = originalPlayer.inputClock;
-		this->animationClock = originalPlayer.animationClock;
-	}
-	return *this;
-}
-
-void Player::draw(sf::RenderTarget & target, sf::RenderStates states) const
-{
-	MovingObject::draw(target, states);
-}
-
-void Player::update()
-{
-	this->input();
-}
-
 void Player::input()
 {
 	sf::IntRect keyFrameRect = this->getKeyFrameRect();
@@ -236,11 +23,296 @@ void Player::input()
 		}
 		this->projectiles[i]->setPosition(position.x + (this->getGlobalBoundingBox().width / 2) - (this->projectiles[i]->getGlobalBoundingBox().width / 2), position.y);
 		this->inputClock.restart();
-	} 
+	}
 	else
 	{
 		this->animation(0);
 	}
+}
+
+Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(texture, sizeOfKeyFrame, position, scale)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(filePath, sizeOfKeyFrame, position, scale)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scale)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scale)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(texture, sizeOfKeyFrame, positionX, positionY, scale)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(filePath, sizeOfKeyFrame, positionX, positionY, scale)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(texture, sizeOfKeyFrame, position, scaleX, scaleY)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(filePath, sizeOfKeyFrame, position, scaleX, scaleY)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scale)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(texture, sizeOfKeyFrame, positionX, positionY, scaleX, scaleY)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const string filePath, const sf::Vector2f sizeOfKeyFrame, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(filePath, sizeOfKeyFrame, positionX, positionY, scaleX, scaleY)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const sf::Vector2f position, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, position, scaleX, scaleY)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const sf::Texture & texture, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(texture, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const string filePath, const float keyFrameWidth, const float keyFrameHeight, const float positionX, const float positionY, const float scaleX, const float scaleY, Projectile* *projectiles, const int nrOfProjectiles):
+	MovingObject(filePath, keyFrameWidth, keyFrameHeight, positionX, positionY, scaleX, scaleY)
+{
+	this->health;
+	this->nrOfProjectiles = nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = projectiles[i];
+	}
+	this->angle = 0;
+	this->inputClock;
+	this->animationClock;
+}
+
+Player::Player(const Player &originalPlayer):
+	MovingObject(originalPlayer)
+{
+	this->health = originalPlayer.health;
+	this->nrOfProjectiles = originalPlayer.nrOfProjectiles;
+	this->projectiles = new Projectile*[this->nrOfProjectiles];
+	for (int i = 0; i < this->nrOfProjectiles; i++)
+	{
+		this->projectiles[i] = originalPlayer.projectiles[i];
+	}
+	this->angle = originalPlayer.angle;
+	this->inputClock = originalPlayer.inputClock;
+	this->animationClock = originalPlayer.animationClock;
+}
+
+Player & Player::operator=(const Player &originalPlayer)
+{
+	if (&originalPlayer != this)
+	{
+		this->~Player();
+		MovingObject::operator=(originalPlayer);
+		this->health = originalPlayer.health;
+		this->nrOfProjectiles = originalPlayer.nrOfProjectiles;
+		this->projectiles = new Projectile*[this->nrOfProjectiles];
+		for (int i = 0; i < this->nrOfProjectiles; i++)
+		{
+			this->projectiles[i] = originalPlayer.projectiles[i];
+		}
+		this->angle = originalPlayer.angle;
+		this->inputClock = originalPlayer.inputClock;
+		this->animationClock = originalPlayer.animationClock;
+	}
+	return *this;
+}
+
+void Player::draw(sf::RenderTarget & target, sf::RenderStates states) const
+{
+	MovingObject::draw(target, states);
+}
+
+void Player::update()
+{
+	this->input();
 }
 
 void Player::animation(const int direction)
@@ -312,5 +384,6 @@ void Player::reduceHealth()
 
 Player::~Player()
 {
+	delete[] this->projectiles;
 	cout << "Deleting Player" << endl;
 }
