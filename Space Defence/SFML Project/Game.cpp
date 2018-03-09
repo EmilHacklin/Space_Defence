@@ -222,5 +222,6 @@ Game::~Game()
 		delete this->projectiles[i];
 	}
 	delete[] this->projectiles;
+	delete this->player;
 	delete[] this->waves;
 }

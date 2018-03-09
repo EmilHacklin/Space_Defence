@@ -290,6 +290,7 @@ MovingObject & MovingObject::operator=(const MovingObject & originalObject)
 {
 	if (&originalObject != this)
 	{
+		this->~MovingObject();
 		this->texture = originalObject.texture;
 		this->sprite = sf::Sprite(this->texture);
 		this->keyFrameRect = originalObject.getKeyFrameRect();
