@@ -1,5 +1,35 @@
 #include "Player.h"
 
+void Player::input()
+{
+	sf::IntRect keyFrameRect = this->getKeyFrameRect();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		this->move(-1, 0, this->SPEEDMULTIPLIER);
+		this->animation(-1);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		this->move(1, 0, this->SPEEDMULTIPLIER);
+		this->animation(1);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->inputClock.getElapsedTime().asSeconds() >= 0.5)
+	{
+		int i = 0;
+		sf::Vector2f position = this->getPosition();
+		while (this->projectiles[i]->isActive() && i < this->nrOfProjectiles - 1)
+		{
+			i++;
+		}
+		this->projectiles[i]->setPosition(position.x + (this->getGlobalBoundingBox().width / 2) - (this->projectiles[i]->getGlobalBoundingBox().width / 2), position.y);
+		this->inputClock.restart();
+	}
+	else
+	{
+		this->animation(0);
+	}
+}
+
 Player::Player(const sf::Texture & texture, const sf::Vector2f sizeOfKeyFrame, const sf::Vector2f position, const sf::Vector2f scale, Projectile* *projectiles, const int nrOfProjectiles):
 	MovingObject(texture, sizeOfKeyFrame, position, scale)
 {
@@ -283,36 +313,6 @@ void Player::draw(sf::RenderTarget & target, sf::RenderStates states) const
 void Player::update()
 {
 	this->input();
-}
-
-void Player::input()
-{
-	sf::IntRect keyFrameRect = this->getKeyFrameRect();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		this->move(-1, 0, this->SPEEDMULTIPLIER);
-		this->animation(-1);
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		this->move(1, 0, this->SPEEDMULTIPLIER);
-		this->animation(1);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->inputClock.getElapsedTime().asSeconds() >= 0.5)
-	{
-		int i = 0;
-		sf::Vector2f position = this->getPosition();
-		while (this->projectiles[i]->isActive() && i < this->nrOfProjectiles - 1)
-		{
-			i++;
-		}
-		this->projectiles[i]->setPosition(position.x + (this->getGlobalBoundingBox().width / 2) - (this->projectiles[i]->getGlobalBoundingBox().width / 2), position.y);
-		this->inputClock.restart();
-	} 
-	else
-	{
-		this->animation(0);
-	}
 }
 
 void Player::animation(const int direction)

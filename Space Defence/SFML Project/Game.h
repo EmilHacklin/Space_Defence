@@ -17,16 +17,20 @@ private:
 	const int DEAFULTNROFWAVES = 3;
 	Player *player;
 	Projectile* *projectiles;
-	Wave *waves;
+	Wave* *waves;
 	const int NROFPROJECTILES = 20;
 	int nrOfWaves;
 	int nrOfRounds;
-	static void increseSpeed();
+	bool paused;
 	bool isWavesDestroyed();
-	bool havePlayerCollided() const;
+	void havePlayerCollided();
+	void haveProjectilesCollided();
+	void updateProjectiles();
+	void updateWaves();
 	void newWaves();
 public:
 	Game() throw(...);
+	void togglePaused();
 	virtual void update();
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	unsigned int getNrOfRounds() const;

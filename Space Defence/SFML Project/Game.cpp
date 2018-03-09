@@ -1,22 +1,16 @@
 #include "Game.h"
 
-void Game::increseSpeed()
-{
-	MovingObject::increaseSpeed();
-}
-
 bool Game::isWavesDestroyed()
 {
 	bool isWavesDestroyed = true;
 	for (int i = 0; i < this->nrOfWaves; i++)
 	{
-		if (this->waves[i].isWaveDestroyed())
+		if (this->waves[i]->isWaveDestroyed())
 		{
-			for (int index = i; index < this->nrOfWaves; index++)
+			delete this->waves[i];
+			for (int index = i + 1; index < this->nrOfWaves; index++)
 			{
-				Wave temp = this->waves[index];
-				this->waves[index] = this->waves[index + 1];
-				this->waves[index + 1] = temp;
+				this->waves[index - 1] = this->waves[index];
 			}
 			this->nrOfWaves --;
 		}
@@ -28,23 +22,130 @@ bool Game::isWavesDestroyed()
 	return isWavesDestroyed;
 }
 
-bool Game::havePlayerCollided() const
+void Game::havePlayerCollided()
 {
+	bool haveCollided = false;
 	for (int i = 0; i < this->nrOfWaves; i++)
 	{
-		if (this->waves[i].haveCollisionOccurred(*this->player))
+		if (this->waves[i]->haveCollisionOccurred(*this->player))
 		{
-			return true;
+			haveCollided = true;
 		}
 	}
-	return false;
+	if (haveCollided)
+	{
+		this->newWaves();
+		this->player->reduceHealth();
+	}
+}
+
+void Game::haveProjectilesCollided()
+{
+	for (int i = 0; i < this->NROFPROJECTILES; i++)
+	{
+		if (this->projectiles[i]->isActive())
+		{
+			int index = -1, x = 0;
+			while (index == -1 && x < this->nrOfWaves)
+			{
+				index = this->waves[x]->indexIfCollisionOccurred(*this->projectiles[i]);
+				x++;
+			}
+			if (index != -1)
+			{
+				this->waves[x - 1]->reduceHealthOfEnemy(index);
+				this->projectiles[i]->setPosition(0, 0);
+			}
+		}
+	}
+}
+
+void Game::updateProjectiles()
+{
+	for (int i = 0; i < this->NROFPROJECTILES; i++)
+	{
+		if (this->projectiles[i]->isActive())
+		{
+			this->projectiles[i]->update();
+		}
+	}
+}
+
+void Game::updateWaves()
+{
+	if (this->lockalClock.getElapsedTime().asSeconds() >= TIMEDELAY)
+	{
+		if (this->waves[this->nrOfWaves - 1]->getPositionOfEnemy(this->waves[this->nrOfWaves - 1]->getNrOfEnemies() - 1).y >= windowSize.y - (ENEMYIMAGESIZE.y * this->scale.y))
+		{
+			this->randomNr = rand() % 2;
+		}
+		else
+		{
+			this->randomNr = rand() % 3;
+		}
+		this->lockalClock.restart();
+	}
+	if (!this->isWavesDestroyed())
+	{
+		if (this->randomNr == 0)
+		{
+			if (this->nrOfWaves > 1)
+			{
+				for (int i = 0; i < this->nrOfWaves; i++)
+				{
+					this->waves[i]->update(sf::Vector2i(-1, 0), this->waves, this->nrOfWaves, i);
+				}
+			}
+			else
+			{
+				this->waves[0]->update(sf::Vector2i(-1, 0));
+			}
+		}
+		else if (this->randomNr == 1)
+		{
+			if (this->nrOfWaves > 1)
+			{
+				for (int i = 0; i < this->nrOfWaves; i++)
+				{
+					this->waves[i]->update(sf::Vector2i(1, 0), this->waves, this->nrOfWaves, i);
+				}
+			}
+			else
+			{
+				this->waves[0]->update(sf::Vector2i(1, 0));
+			}
+
+		}
+		else if (this->randomNr == 2)
+		{
+			if (this->nrOfWaves > 1)
+			{
+				for (int i = 0; i < this->nrOfWaves; i++)
+				{
+					this->waves[i]->update(sf::Vector2i(0, 1), this->waves, this->nrOfWaves, i);
+				}
+			}
+			else
+			{
+				this->waves[0]->update(sf::Vector2i(0, 1));
+			}
+		}
+	}
+	else
+	{
+		this->newWaves();
+	}
 }
 
 void Game::newWaves()
 {
+	for (int i = 0; i < this->nrOfWaves; i++)
+	{
+		delete this->waves[i];
+	}
 	for (int i = 0; i < this->DEAFULTNROFWAVES; i++)
 	{
-		this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
+		this->waves[i] = new Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
 	}
 	this->nrOfWaves = this->DEAFULTNROFWAVES;
 	this->nrOfRounds++;
@@ -70,12 +171,13 @@ Game::Game()
 		}
 		this->player = new Player("../Resources/Player.png", PLAYERIMAGESIZE , static_cast<float>((windowSize.x - ((PLAYERIMAGESIZE.x * this->scale.x) / 2)) / 2.0), static_cast<float>(windowSize.y - (PLAYERIMAGESIZE.y * this->scale.y)), this->scale, this->projectiles, this->NROFPROJECTILES);
 		this->nrOfWaves = this->DEAFULTNROFWAVES;
-		this->waves = new Wave[this->nrOfWaves];
+		this->waves = new Wave*[this->nrOfWaves];
 		for (int i = 0; i < this->nrOfWaves; i++)
 		{
-			this->waves[i] = Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
+			this->waves[i] = new Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
 		}
 		this->nrOfRounds = 1;
+		this->paused = false;
 		MovingObject::resetGlobalClock();
 	}
 	else
@@ -84,101 +186,30 @@ Game::Game()
 	}
 }
 
-void Game::update()
+void Game::togglePaused()
 {
-	this->player->update();
-	for (int i = 0; i < this->NROFPROJECTILES; i++)
+	if (this->paused)
 	{
-		if (this->projectiles[i]->isActive())
-		{
-			this->projectiles[i]->update();
-		}
-	}
-	if (this->lockalClock.getElapsedTime().asSeconds() >= TIMEDELAY)
-	{
-		if (this->waves[this->nrOfWaves - 1].getPositionOfEnemy(this->waves[this->nrOfWaves - 1].getNrOfEnemies() - 1).y >= windowSize.y - (ENEMYIMAGESIZE.y * this->scale.y))
-		{
-			this->randomNr = rand() % 2;
-		}
-		else
-		{
-			this->randomNr = rand() % 3;
-		}
-		this->lockalClock.restart();
-	}
-	if (!this->isWavesDestroyed())
-	{
-		if (this->randomNr == 0)
-		{
-			if (this->nrOfWaves > 1)
-			{
-				for (int i = 0; i < this->nrOfWaves; i++)
-				{
-					this->waves[i].update(sf::Vector2i(-1, 0), this->waves, this->nrOfWaves, i);
-				}
-			}
-			else
-			{
-				this->waves->update(sf::Vector2i(-1, 0));
-			}
-		}
-		else if (this->randomNr == 1)
-		{
-			if (this->nrOfWaves > 1)
-			{
-				for (int i = 0; i < this->nrOfWaves; i++)
-				{
-					this->waves[i].update(sf::Vector2i(1, 0), this->waves, this->nrOfWaves, i);
-				}
-			}
-			else
-			{
-				this->waves->update(sf::Vector2i(1, 0));
-			}
-			
-		}
-		else if (this->randomNr == 2)
-		{
-			if (this->nrOfWaves > 1)
-			{
-				for (int i = 0; i < this->nrOfWaves; i++)
-				{
-					this->waves[i].update(sf::Vector2i(0, 1), this->waves, this->nrOfWaves, i);
-				}
-			}
-			else
-			{
-				this->waves->update(sf::Vector2i(0, 1));
-			}
-		}
+		MovingObject::resetGlobalClock();
+		this->paused = false;
 	}
 	else
 	{
-		this->newWaves();
+		this->paused = true;
 	}
-	if (this->havePlayerCollided())
+}
+
+void Game::update()
+{
+	if (!this->paused)
 	{
-		this->newWaves();
-		this->player->reduceHealth();
+		this->player->update();
+		this->updateProjectiles();
+		this->updateWaves();
+		this->havePlayerCollided();
+		this->haveProjectilesCollided();
+		MovingObject::resetGlobalClock();
 	}
-	for (int i = 0; i < this->NROFPROJECTILES; i++)
-	{
-		if (this->projectiles[i]->isActive())
-		{
-			int index = -1, x = 0;
-			while (index == -1 && x < this->nrOfWaves)
-			{
-				index = this->waves[x].indexIfCollisionOccurred(*this->projectiles[i]);
-				x++;
-			}
-			if (index != -1)
-			{
-				this->waves[x - 1].reduceHealthOfEnemy(index);
-				this->projectiles[i]->setPosition(0, 0);
-			}
-		}
-	}
-	MovingObject::resetGlobalClock();
 }
 
 void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -194,7 +225,7 @@ void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	}
 	for (int i = 0; i < this->nrOfWaves; i++)
 	{
-		this->waves[i].draw(target, states);
+		this->waves[i]->draw(target, states);
 	}
 }
 
@@ -223,5 +254,9 @@ Game::~Game()
 	}
 	delete[] this->projectiles;
 	delete this->player;
+	for (int i = 0; i < this->nrOfWaves; i++)
+	{
+		delete this->waves[i];
+	}
 	delete[] this->waves;
 }
