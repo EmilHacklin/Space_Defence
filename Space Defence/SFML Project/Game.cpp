@@ -73,7 +73,7 @@ void Game::updateProjectiles()
 
 void Game::updateWaves()
 {
-	if (this->lockalClock.getElapsedTime().asSeconds() >= TIMEDELAY)
+	if (this->lockalClock.getElapsedTime().asSeconds() >= timeDelay)
 	{
 		if (this->waves[this->nrOfWaves - 1]->getPositionOfEnemy(this->waves[this->nrOfWaves - 1]->getNrOfEnemies() - 1).y >= windowSize.y - (ENEMYIMAGESIZE.y * this->scale.y))
 		{
@@ -145,11 +145,12 @@ void Game::newWaves()
 	}
 	for (int i = 0; i < this->DEAFULTNROFWAVES; i++)
 	{
-		this->waves[i] = new Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
+		this->waves[i] = new Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (20 * i));
 	}
 	this->nrOfWaves = this->DEAFULTNROFWAVES;
 	this->nrOfRounds++;
 	MovingObject::increaseSpeed();
+	this->timeDelay = DEAFULTSPEED / MovingObject::getSpeed();
 }
 
 Game::Game()
@@ -174,10 +175,12 @@ Game::Game()
 		this->waves = new Wave*[this->nrOfWaves];
 		for (int i = 0; i < this->nrOfWaves; i++)
 		{
-			this->waves[i] = new Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (10 * i));
+			this->waves[i] = new Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (20 * i));
 		}
 		this->nrOfRounds = 1;
 		this->paused = false;
+		MovingObject::resetSpeed();
+		this->timeDelay = DEAFULTSPEED / MovingObject::getSpeed();
 		MovingObject::resetGlobalClock();
 	}
 	else
@@ -203,12 +206,12 @@ void Game::update()
 {
 	if (!this->paused)
 	{
+		MovingObject::resetGlobalClock();
 		this->player->update();
 		this->updateProjectiles();
 		this->updateWaves();
 		this->havePlayerCollided();
 		this->haveProjectilesCollided();
-		MovingObject::resetGlobalClock();
 	}
 }
 

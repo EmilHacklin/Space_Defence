@@ -166,7 +166,7 @@ void Enemy::update()
 
 void Enemy::update(sf::Vector2i direction)
 {
-	this->move(direction , this->SPEEDMULTIPLIER);
+	this->move(direction , Enemy::SPEEDMULTIPLIER);
 	this->animation();
 }
 

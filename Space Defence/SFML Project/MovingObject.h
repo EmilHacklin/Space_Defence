@@ -7,6 +7,7 @@
 using namespace std;
 
 extern sf::Vector2u windowSize;
+const float DEAFULTSPEED = 100;
 
 class MovingObject : public sf::Transformable, public sf::Drawable
 {
@@ -15,6 +16,7 @@ private:
 	sf::Texture texture;
 	sf::IntRect keyFrameRect;
 	static sf::Clock globalClock;
+	static float deltaTime;
 	static float globalSpeed;
 public:
 	MovingObject(const sf::Texture &texture = sf::Texture(), const sf::Vector2f sizeOfKeyFrame = sf::Vector2f(), const sf::Vector2f position = sf::Vector2f(), const sf::Vector2f scale = sf::Vector2f(1.0, 1.0)) throw (...);
@@ -49,6 +51,7 @@ public:
 	void setScale(sf::Vector2f scale) throw(...);
 	void setScale(const float scaleX, const float scaleY) throw(...);
 	static void resetGlobalClock();
+	static float getSpeed();
 	static void increaseSpeed();
 	static void resetSpeed();
 	void move(const sf::Vector2i direction, const float speedMultiplier);

@@ -113,7 +113,7 @@ void Projectile::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 void Projectile::update()
 {
-	this->move(0, -1 , this->SPEEDMULTIPLIER);
+	this->move(0, -1 , Projectile::SPEEDMULTIPLIER);
 }
 
 Projectile::~Projectile()

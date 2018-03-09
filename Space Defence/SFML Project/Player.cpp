@@ -5,12 +5,12 @@ void Player::input()
 	sf::IntRect keyFrameRect = this->getKeyFrameRect();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		this->move(-1, 0, this->SPEEDMULTIPLIER);
+		this->move(-1, 0, Player::SPEEDMULTIPLIER);
 		this->animation(-1);
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		this->move(1, 0, this->SPEEDMULTIPLIER);
+		this->move(1, 0, Player::SPEEDMULTIPLIER);
 		this->animation(1);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && this->inputClock.getElapsedTime().asSeconds() >= 0.5)

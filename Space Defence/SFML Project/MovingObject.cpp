@@ -1,8 +1,9 @@
 #include "MovingObject.h"
 
 sf::Vector2u windowSize;
-float MovingObject::globalSpeed = 100;
 sf::Clock MovingObject::globalClock;
+float MovingObject::deltaTime = 0;
+float MovingObject::globalSpeed = DEAFULTSPEED;
 
 MovingObject::MovingObject(const sf::Texture &texture, const sf::Vector2f sizeOfKeyFrame,const sf::Vector2f position , const sf::Vector2f scale) throw(...)
 {
@@ -438,7 +439,12 @@ void MovingObject::setScale(const float scaleX, const float scaleY)
 
 void MovingObject::resetGlobalClock()
 {
-	MovingObject::globalClock.restart();
+	MovingObject::deltaTime = MovingObject::globalClock.restart().asSeconds();
+}
+
+float MovingObject::getSpeed()
+{
+	return MovingObject::globalSpeed;
 }
 
 void MovingObject::increaseSpeed()
@@ -448,26 +454,26 @@ void MovingObject::increaseSpeed()
 
 void MovingObject::resetSpeed()
 {
-	MovingObject::globalSpeed = 100;
+	MovingObject::globalSpeed = DEAFULTSPEED;
 }
 
 void MovingObject::move(const sf::Vector2i direction, const float speedMultiplier)
 {
 	if (direction.x == -1 && this->sprite.getPosition().x > 0)
 	{
-		this->sprite.move(-this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier, 0);
+		this->sprite.move(-this->globalSpeed * this->deltaTime * this->sprite.getScale().x * speedMultiplier, 0);
 	}
 	else if (direction.x == 1 && this->sprite.getPosition().x + this->sprite.getGlobalBounds().width < windowSize.x)
 	{
-		this->sprite.move(this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier, 0);
+		this->sprite.move(this->globalSpeed * this->deltaTime * this->sprite.getScale().x * speedMultiplier, 0);
 	}
 	else if (direction.y == -1 && this->sprite.getPosition().y > 0)
 	{
-		this->sprite.move(0, -this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().y * speedMultiplier);
+		this->sprite.move(0, -this->globalSpeed * this->deltaTime * this->sprite.getScale().y * speedMultiplier);
 	}
 	else if (direction.y == 1 && this->sprite.getPosition().y + this->sprite.getGlobalBounds().height < windowSize.y)
 	{
-		this->sprite.move(0, this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().y * speedMultiplier);
+		this->sprite.move(0, this->globalSpeed * this->deltaTime * this->sprite.getScale().y * speedMultiplier);
 	}
 }
 
@@ -475,19 +481,19 @@ void MovingObject::move(const int directionX, const int directionY, const float 
 {
 	if (directionX == -1 && this->sprite.getPosition().x > 0)
 	{
-		this->sprite.move(-this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier, 0);
+		this->sprite.move(-this->globalSpeed * this->deltaTime * this->sprite.getScale().x * speedMultiplier, 0);
 	}
 	else if (directionX == 1 && this->sprite.getPosition().x + this->sprite.getGlobalBounds().width < windowSize.x)
 	{
-		this->sprite.move(this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier, 0);
+		this->sprite.move(this->globalSpeed * this->deltaTime * this->sprite.getScale().x * speedMultiplier, 0);
 	}
 	else if (directionY == -1 && this->sprite.getPosition().y > 0)
 	{
-		this->sprite.move(0, -this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier);
+		this->sprite.move(0, -this->globalSpeed * this->deltaTime * this->sprite.getScale().x * speedMultiplier);
 	}
 	else if (directionY == 1 && this->sprite.getPosition().y + this->sprite.getGlobalBounds().height < windowSize.y)
 	{
-		this->sprite.move(0, this->globalSpeed * this->globalClock.getElapsedTime().asSeconds() * this->sprite.getScale().x * speedMultiplier);
+		this->sprite.move(0, this->globalSpeed * this->deltaTime * this->sprite.getScale().x * speedMultiplier);
 	}
 }
 
