@@ -178,7 +178,7 @@ Game::Game()
 			this->waves[i] = new Wave("../Resources/Enemy.png", ENEMYIMAGESIZE, this->scale, 5, (ENEMYIMAGESIZE.y * i * this->scale.y) + (20 * i));
 		}
 		this->nrOfRounds = 1;
-		this->paused = false;
+		this->isPaused = false;
 		MovingObject::resetSpeed();
 		this->timeDelay = DEAFULTSPEED / MovingObject::getSpeed();
 		MovingObject::resetGlobalClock();
@@ -191,20 +191,20 @@ Game::Game()
 
 void Game::togglePaused()
 {
-	if (this->paused)
+	if (this->isPaused)
 	{
 		MovingObject::resetGlobalClock();
-		this->paused = false;
+		this->isPaused = false;
 	}
 	else
 	{
-		this->paused = true;
+		this->isPaused = true;
 	}
 }
 
 void Game::update()
 {
-	if (!this->paused)
+	if (!this->isPaused)
 	{
 		MovingObject::resetGlobalClock();
 		this->player->update();
@@ -232,7 +232,7 @@ void Game::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	}
 }
 
-unsigned int Game::getNrOfRounds() const
+int Game::getNrOfRounds() const
 {
 	return this->nrOfRounds;
 }

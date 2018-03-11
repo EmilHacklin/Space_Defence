@@ -14,14 +14,14 @@ private:
 	sf::Clock lockalClock;
 	int randomNr;
 	float timeDelay;
-	const int DEAFULTNROFWAVES = 3;
 	Player *player;
 	Projectile* *projectiles;
 	Wave* *waves;
-	const int NROFPROJECTILES = 20;
 	int nrOfWaves;
 	int nrOfRounds;
-	bool paused;
+	bool isPaused;
+	const int DEAFULTNROFWAVES = 3;
+	const int NROFPROJECTILES = 20;
 	bool isWavesDestroyed();
 	void havePlayerCollided();
 	void haveProjectilesCollided();
@@ -33,7 +33,7 @@ public:
 	void togglePaused();
 	virtual void update();
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	unsigned int getNrOfRounds() const;
+	int getNrOfRounds() const;
 	bool isGameOver() const;
 	~Game();
 };

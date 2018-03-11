@@ -1,6 +1,6 @@
 #include "Health.h"
 
-Health::Health(const short healthPoints)
+Health::Health(const int healthPoints)
 {
 	this->healthPoints = healthPoints;
 }
@@ -19,7 +19,7 @@ Health & Health::operator=(const Health & originalHealth)
 	return *this;
 }
 
-short Health::getHealthPoints() const
+int Health::getHealthPoints() const
 {
 	return this->healthPoints;
 }

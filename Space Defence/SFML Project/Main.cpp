@@ -11,12 +11,12 @@ int main()
 	int choice = -1;
 	vector<sf::VideoMode> resolutionList(videoMode.getFullscreenModes());
 	cout << "***Resolution Options***" << endl;
-	for (int i = 0; i < resolutionList.size(); i++)
+	for (int i = 0; i < static_cast<int>(resolutionList.size()); i++)
 	{
 		cout << i << ": " << resolutionList[i].height << "X" << resolutionList[i].width << endl;
 	}
 	
-	while (choice < 0 || choice >= resolutionList.size())
+	while (choice < 0 || choice >= static_cast<int>(resolutionList.size()))
 	{
 		cout << "Pick the resolution: ";
 		cin >> choice;
@@ -55,6 +55,10 @@ int main()
 			window.draw(game);
 			window.display();
 		}
+		cout << "************************" << endl;
+		cout << "You survived " << game.getNrOfRounds() << " round!\n" << endl;
+		cout << "Press enter to quit";
+		cin.get();
 		return 0;
 	}
 	catch (char *exepString)
