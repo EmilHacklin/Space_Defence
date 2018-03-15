@@ -202,6 +202,11 @@ void Game::togglePaused()
 	}
 }
 
+bool Game::getIsPaused() const
+{
+	return this->isPaused;
+}
+
 void Game::update()
 {
 	if (!this->isPaused)

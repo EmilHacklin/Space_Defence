@@ -31,6 +31,7 @@ private:
 public:
 	Game() throw(...);
 	void togglePaused();
+	bool getIsPaused() const;
 	virtual void update();
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	int getNrOfRounds() const;

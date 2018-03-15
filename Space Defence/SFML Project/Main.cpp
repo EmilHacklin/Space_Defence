@@ -39,9 +39,10 @@ int main()
 			{
 				window.close();
 			}
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && inputClock.getElapsedTime().asSeconds() >= 1)
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::P) && inputClock.getElapsedTime().asSeconds() >= 0.5)
 			{
 				game.togglePaused();
+				inputClock.restart();
 			}
 			else if (event.type == sf::Event::EventType::GainedFocus)
 			{
@@ -49,7 +50,10 @@ int main()
 			}
 			else if (event.type == sf::Event::EventType::LostFocus)
 			{
-				game.togglePaused();
+				if (!game.getIsPaused())
+				{
+					game.togglePaused();
+				}
 			}
 			game.update();
 			window.draw(game);
